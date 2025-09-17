@@ -134,7 +134,7 @@ export default function PoolsPage() {
                 <Droplets className="mr-2 h-4 w-4" />
                 Contribute
               </Button>
-               <Button variant="outline" className="w-full">
+               <Button variant="outline">
                 <PlusCircle className="mr-2 h-4 w-4" />
                 Join Pool
               </Button>
