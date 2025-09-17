@@ -28,7 +28,7 @@ const pools = [
   {
     id: 2,
     name: 'KENYA AIRWAYS GREEN POOL',
-    description: 'Support the recovery of the Great Barrier Reef through coral planting and ecosystem monitoring.',
+    description: 'Join kenya airways in carbon emmision reduction',
     imageUrl: 'https://picsum.photos/seed/reef/600/400',
     imageHint: 'coral reef',
     goal: 75000,
