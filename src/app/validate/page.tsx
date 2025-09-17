@@ -11,28 +11,42 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Terminal, Bot, Leaf, HeartPulse, ShieldAlert, AlertCircle } from 'lucide-react';
+import { Terminal, Bot, Leaf, HeartPulse, ShieldAlert, AlertCircle, CheckCircle } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { useWallet } from '@/hooks/use-wallet';
+import { useToast } from '@/hooks/use-toast';
 
 const initialState = {
   data: null,
   error: null,
+  success: false,
 };
 
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
     <Button type="submit" disabled={pending} className="w-full">
-      {pending ? 'Analyzing...' : 'Analyze Tree Health'}
+      {pending ? 'Analyzing...' : 'Analyze and Mint Token'}
     </Button>
   );
 }
 
 export default function ValidatePage() {
   const { account } = useWallet();
+  const { toast } = useToast();
   const [state, formAction] = useFormState(handleValidation, initialState);
   const [photoPreview, setPhotoPreview] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (state.success) {
+      toast({
+        title: "Validation Successful!",
+        description: "1 JANI token has been minted to your account.",
+        action: <CheckCircle className="h-5 w-5 text-green-500" />,
+      });
+    }
+  }, [state.success, toast]);
+
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -53,7 +67,7 @@ export default function ValidatePage() {
     <div className="flex flex-col gap-8">
       <AppHeader
         title="AI Tree Health Validator"
-        description="Submit tree data for an AI-powered health analysis."
+        description="Submit tree data for an AI-powered health analysis and mint a JANI token."
       />
       <div className="grid gap-8 md:grid-cols-2">
         <Card>
@@ -72,6 +86,7 @@ export default function ValidatePage() {
               </Alert>
             ) : (
               <form action={formAction} className="space-y-6">
+                <input type="hidden" name="walletAccount" value={account} />
                 <div className="space-y-2">
                   <Label htmlFor="photo">Tree Photo</Label>
                   <Input id="photo" name="photo" type="file" required onChange={handleFileChange} accept="image/*" />

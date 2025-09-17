@@ -9,7 +9,8 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircle, CircleDollarSign } from 'lucide-react';
-import Image from 'next/image';
+import { useWallet } from '@/hooks/use-wallet';
+import { useEffect } from 'react';
 
 const initialState = {
   data: null,
@@ -26,26 +27,42 @@ function SubmitButton() {
 }
 
 export default function BalancePage() {
+  const { account } = useWallet();
   const [state, formAction] = useFormState(handleBalanceInquiry, initialState);
+
+  // Automatically submit the form when an account is connected
+  useEffect(() => {
+    if (account) {
+      const formData = new FormData();
+      formData.append('accountId', account);
+      // We are calling the action directly
+      handleBalanceInquiry(initialState, formData).then((newState) => {
+        // This is a bit of a hack to update the state from an effect
+        // A better approach in a larger app might involve a state management library
+        document.querySelector('button[type="submit"]')?.click();
+      });
+    }
+  }, [account]);
+
 
   return (
     <div className="flex flex-col gap-8">
       <AppHeader
         title="JANI Token Balance"
-        description="Check the JANI token balance for a specific project."
+        description="Check the JANI token balance for a specific account."
       />
       
       <div className="grid gap-8 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle className="font-headline">Project Balance Inquiry</CardTitle>
-            <CardDescription>Enter a project ID to retrieve its JANI token balance.</CardDescription>
+            <CardTitle className="font-headline">Account Balance Inquiry</CardTitle>
+            <CardDescription>Enter an account ID to retrieve its JANI token balance, or connect your wallet to see your own balance.</CardDescription>
           </CardHeader>
           <CardContent>
             <form action={formAction} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="projectId">Project ID</Label>
-                <Input id="projectId" name="projectId" placeholder="e.g., P-XYZ-001" required />
+                <Label htmlFor="accountId">Account ID</Label>
+                <Input id="accountId" name="accountId" placeholder="e.g., 0.0.123456" required defaultValue={account || ''} />
               </div>
               <SubmitButton />
               {state.error && (
@@ -67,14 +84,18 @@ export default function BalancePage() {
               <p className="text-4xl font-bold text-primary">
                 {state.data.tokenBalance.toLocaleString()} JANI
               </p>
-              <p className="text-muted-foreground">
-                Balance for Project: {state.data.projectId}
+              <p className="text-muted-foreground text-sm break-all">
+                Balance for: {state.data.accountId}
               </p>
             </div>
           ) : (
-            <p className="text-muted-foreground">
-              Enter a project ID and click "Check Balance" to see the result.
-            </p>
+             account ? (
+                 <p className="text-muted-foreground">Click "Check Balance" to see your tokens.</p>
+             ) : (
+                <p className="text-muted-foreground">
+                Connect your wallet to check your balance.
+                </p>
+            )
           )}
         </Card>
       </div>
