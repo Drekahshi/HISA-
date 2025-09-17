@@ -68,11 +68,11 @@ export function AppSidebar() {
          <SidebarMenuItem>
               <SidebarMenuButton
                 asChild
-                tooltip={{ children: "About Veridi", side: 'right' }}
+                tooltip={{ children: "About JANI", side: 'right' }}
               >
                 <Link href="#">
                   <Info />
-                  <span>About Veridi</span>
+                  <span>About JANI</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
