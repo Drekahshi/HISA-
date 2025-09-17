@@ -18,6 +18,7 @@ import {
   Info,
   Database,
   Droplets,
+  Tractor,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -47,6 +48,11 @@ const menuItems = [
     label: 'Conservation Pools',
     icon: Droplets,
   },
+  {
+    href: '/terra-farms',
+    label: 'Terra Farms',
+    icon: Tractor,
+  }
 ];
 
 export function AppSidebar() {
