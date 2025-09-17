@@ -19,6 +19,7 @@ import {
   Database,
   Droplets,
   Tractor,
+  Landmark,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -52,6 +53,11 @@ const menuItems = [
     href: '/terra-farms',
     label: 'Terra Farms',
     icon: Tractor,
+  },
+  {
+    href: '/tokenomics',
+    label: 'Tokenomics',
+    icon: Landmark,
   }
 ];
 
