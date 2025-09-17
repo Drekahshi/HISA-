@@ -104,7 +104,7 @@ export default function DashboardPage() {
         <ConservationChart />
         <Card className="lg:col-span-1 xl:col-span-1">
           <CardHeader>
-            <CardTitle className="font-headline">Recent Verifications</CardTitle>
+            <CardTitle className="font-headline">AI analytics</CardTitle>
           </CardHeader>
           <CardContent>
             <Table>
