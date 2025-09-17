@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { AppHeader } from '@/components/app-header';
-import { Trees, BadgeDollarSign, LineChart } from 'lucide-react';
+import { Trees, BadgeDollarSign, LineChart, Users } from 'lucide-react';
 import { ConservationChart } from '@/components/conservation-chart';
 
 const recentVerifications = [
@@ -67,13 +67,13 @@ export default function DashboardPage() {
         <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Total Trees Verified
+              Validators Active
             </CardTitle>
-            <Trees className="h-5 w-5 text-primary" />
+            <Users className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-headline">10,482</div>
-            <p className="text-xs text-muted-foreground">+12.1% from last month</p>
+            <div className="text-2xl font-bold font-headline">24</div>
+            <p className="text-xs text-muted-foreground">+2 since last month</p>
           </CardContent>
         </Card>
         <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
