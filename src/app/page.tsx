@@ -14,30 +14,8 @@ import {
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { AppHeader } from '@/components/app-header';
-import { Trees, BadgeDollarSign, LineChart, CheckCircle2 } from 'lucide-react';
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from '@/components/ui/chart';
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
-import type { ChartConfig } from '@/components/ui/chart';
-
-const chartData = [
-  { month: 'January', trees: 186 },
-  { month: 'February', trees: 305 },
-  { month: 'March', trees: 237 },
-  { month: 'April', trees: 273 },
-  { month: 'May', trees: 209 },
-  { month: 'June', trees: 214 },
-];
-
-const chartConfig = {
-  trees: {
-    label: 'Trees Planted',
-    color: 'hsl(var(--primary))',
-  },
-} satisfies ChartConfig;
+import { Trees, BadgeDollarSign, LineChart } from 'lucide-react';
+import { ConservationChart } from '@/components/conservation-chart';
 
 const recentVerifications = [
   {
@@ -123,31 +101,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card className="lg:col-span-1 xl:col-span-1">
-          <CardHeader>
-            <CardTitle className="font-headline">Conservation Growth</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ChartContainer config={chartConfig} className="h-[250px] w-full">
-              <BarChart accessibilityLayer data={chartData}>
-                <CartesianGrid vertical={false} />
-                <XAxis
-                  dataKey="month"
-                  tickLine={false}
-                  tickMargin={10}
-                  axisLine={false}
-                  tickFormatter={(value) => value.slice(0, 3)}
-                />
-                 <YAxis />
-                <ChartTooltip
-                  cursor={false}
-                  content={<ChartTooltipContent indicator="dot" />}
-                />
-                <Bar dataKey="trees" fill="var(--color-trees)" radius={4} />
-              </BarChart>
-            </ChartContainer>
-          </CardContent>
-        </Card>
+        <ConservationChart />
         <Card className="lg:col-span-1 xl:col-span-1">
           <CardHeader>
             <CardTitle className="font-headline">Recent Verifications</CardTitle>
