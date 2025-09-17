@@ -18,7 +18,7 @@ const pools = [
   {
     id: 1,
     name: 'OOLOLUA FOREST POOL',
-    description: 'Help restore vital parts of the Amazon rainforest by funding the plantation of native tree species.',
+    description: 'Help restore vital parts of the Ololua forest by funding the plantation of native tree species.',
     imageUrl: 'https://picsum.photos/seed/amazon/600/400',
     imageHint: 'rainforest',
     goal: 50000,
