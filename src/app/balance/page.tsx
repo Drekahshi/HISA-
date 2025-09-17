@@ -10,7 +10,8 @@ import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircle, CircleDollarSign } from 'lucide-react';
 import { useWallet } from '@/hooks/use-wallet';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { getHbarBalance } from './hbar-actions';
 
 const initialState = {
   data: null,
@@ -27,23 +28,32 @@ function SubmitButton() {
 }
 
 export default function BalancePage() {
-  const { account } = useWallet();
+  const { account, walletType } = useWallet();
   const [state, formAction] = useFormState(handleBalanceInquiry, initialState);
+  const [hbarBalance, setHbarBalance] = useState<string | null>(null);
+  const [hbarError, setHbarError] = useState<string | null>(null);
+  const [isHbarLoading, setIsHbarLoading] = useState<boolean>(false);
 
-  // Automatically submit the form when an account is connected
   useEffect(() => {
-    if (account) {
-      const formData = new FormData();
-      formData.append('accountId', account);
-      // We are calling the action directly
-      handleBalanceInquiry(initialState, formData).then((newState) => {
-        // This is a bit of a hack to update the state from an effect
-        // A better approach in a larger app might involve a state management library
-        document.querySelector('button[type="submit"]')?.click();
-      });
+    if (account && walletType === 'hashpack') {
+      const fetchHbarBalance = async () => {
+        setIsHbarLoading(true);
+        setHbarError(null);
+        try {
+          const balance = await getHbarBalance(account);
+          setHbarBalance(balance);
+        } catch (error) {
+          setHbarError(error instanceof Error ? error.message : 'An unknown error occurred.');
+        } finally {
+          setIsHbarLoading(false);
+        }
+      };
+      fetchHbarBalance();
+    } else {
+        setHbarBalance(null);
+        setHbarError(null);
     }
-  }, [account]);
-
+  }, [account, walletType]);
 
   return (
     <div className="flex flex-col gap-8">
@@ -76,27 +86,38 @@ export default function BalancePage() {
           </CardContent>
         </Card>
 
-        <Card className="flex flex-col items-center justify-center p-6 text-center bg-card">
-          <CircleDollarSign className="w-16 h-16 text-primary mb-4" />
-          <CardTitle className="font-headline text-2xl mb-2">Token Balance</CardTitle>
-          {state.data ? (
-            <div>
-              <p className="text-4xl font-bold text-primary">
-                {state.data.tokenBalance.toLocaleString()} JANI
-              </p>
-              <p className="text-muted-foreground text-sm break-all">
-                Balance for: {state.data.accountId}
-              </p>
+        <Card className="flex flex-col p-6 text-center bg-card justify-center">
+            <div className='flex-grow space-y-4'>
+                <div className="flex flex-col items-center">
+                  <CircleDollarSign className="w-12 h-12 text-primary mb-2" />
+                  <CardTitle className="font-headline text-2xl mb-1">JANI Balance</CardTitle>
+                  {state.data ? (
+                    <div>
+                      <p className="text-4xl font-bold text-primary">
+                        {state.data.tokenBalance.toLocaleString()} JANI
+                      </p>
+                      <p className="text-muted-foreground text-sm break-all">
+                        For: {state.data.accountId}
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="text-muted-foreground text-sm">
+                      {account ? 'Click "Check Balance" to see your JANI tokens.' : 'Connect wallet to see your balance.'}
+                    </p>
+                  )}
+                </div>
+                {walletType === 'hashpack' && (
+                    <div className="border-t pt-4 flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-12 h-12 text-primary mb-2"><path d="M12 22V12h10V2zM4 12H2v10h10v-2z"></path></svg>
+                         <CardTitle className="font-headline text-2xl mb-1">HBAR Balance</CardTitle>
+                        {isHbarLoading && <p className="text-muted-foreground text-sm">Loading HBAR balance...</p>}
+                        {hbarError && <p className="text-red-500 text-sm">{hbarError}</p>}
+                        {hbarBalance !== null && (
+                             <p className="text-3xl font-bold text-primary">{hbarBalance}</p>
+                        )}
+                   </div>
+                )}
             </div>
-          ) : (
-             account ? (
-                 <p className="text-muted-foreground">Click "Check Balance" to see your tokens.</p>
-             ) : (
-                <p className="text-muted-foreground">
-                Connect your wallet to check your balance.
-                </p>
-            )
-          )}
         </Card>
       </div>
     </div>
