@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/app-sidebar';
 import { Toaster } from '@/components/ui/toaster';
+import { WalletProvider } from '@/context/wallet-provider';
 
 export const metadata: Metadata = {
   title: 'JANI - Blockchain-Powered Conservation',
@@ -23,14 +24,16 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className={cn('font-body antialiased')}>
-        <SidebarProvider>
-            <AppSidebar />
-            <SidebarInset>
-              <div className="p-4 sm:p-6 lg:p-8">
-                {children}
-              </div>
-            </SidebarInset>
-        </SidebarProvider>
+        <WalletProvider>
+          <SidebarProvider>
+              <AppSidebar />
+              <SidebarInset>
+                <div className="p-4 sm:p-6 lg:p-8">
+                  {children}
+                </div>
+              </SidebarInset>
+          </SidebarProvider>
+        </WalletProvider>
         <Toaster />
       </body>
     </html>

@@ -13,6 +13,7 @@ import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Terminal, Bot, Leaf, HeartPulse, ShieldAlert, AlertCircle } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useWallet } from '@/hooks/use-wallet';
 
 const initialState = {
   data: null,
@@ -29,6 +30,7 @@ function SubmitButton() {
 }
 
 export default function ValidatePage() {
+  const { account } = useWallet();
   const [state, formAction] = useFormState(handleValidation, initialState);
   const [photoPreview, setPhotoPreview] = React.useState<string | null>(null);
 
@@ -60,33 +62,43 @@ export default function ValidatePage() {
             <CardDescription>Upload a photo and provide details about the tree.</CardDescription>
           </CardHeader>
           <CardContent>
-            <form action={formAction} className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="photo">Tree Photo</Label>
-                <Input id="photo" name="photo" type="file" required onChange={handleFileChange} accept="image/*" />
-              </div>
-              
-              <div className="w-full aspect-video rounded-md overflow-hidden border bg-muted flex items-center justify-center">
-                 <Image
-                    src={photoPreview || defaultImage?.imageUrl || "https://picsum.photos/seed/tree1/800/600"}
-                    alt="Tree preview"
-                    width={800}
-                    height={600}
-                    className="object-cover h-full w-full"
-                    data-ai-hint={defaultImage?.imageHint || 'tree'}
-                  />
-              </div>
+            {!account ? (
+              <Alert>
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>Wallet Not Connected</AlertTitle>
+                <AlertDescription>
+                  Please connect your wallet to submit a validation request.
+                </AlertDescription>
+              </Alert>
+            ) : (
+              <form action={formAction} className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="photo">Tree Photo</Label>
+                  <Input id="photo" name="photo" type="file" required onChange={handleFileChange} accept="image/*" />
+                </div>
+                
+                <div className="w-full aspect-video rounded-md overflow-hidden border bg-muted flex items-center justify-center">
+                   <Image
+                      src={photoPreview || defaultImage?.imageUrl || "https://picsum.photos/seed/tree1/800/600"}
+                      alt="Tree preview"
+                      width={800}
+                      height={600}
+                      className="object-cover h-full w-full"
+                      data-ai-hint={defaultImage?.imageHint || 'tree'}
+                    />
+                </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="treeDescription">Tree Description</Label>
-                <Textarea id="treeDescription" name="treeDescription" placeholder="e.g., Young acacia tree in a sunny, dry environment. Leaves appear slightly yellow." required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="gpsLocation">GPS location</Label>
-                <Input id="gpsLocation" name="gpsLocation" placeholder="e.g., 1.2921, 36.8219" required />
-              </div>
-              <SubmitButton />
-            </form>
+                <div className="space-y-2">
+                  <Label htmlFor="treeDescription">Tree Description</Label>
+                  <Textarea id="treeDescription" name="treeDescription" placeholder="e.g., Young acacia tree in a sunny, dry environment. Leaves appear slightly yellow." required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="gpsLocation">GPS location</Label>
+                  <Input id="gpsLocation" name="gpsLocation" placeholder="e.g., 1.2921, 36.8219" required />
+                </div>
+                <SubmitButton />
+              </form>
+            )}
           </CardContent>
         </Card>
         
