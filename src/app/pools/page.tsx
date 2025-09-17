@@ -92,7 +92,7 @@ export default function PoolsPage() {
             <CardFooter className="p-6 pt-0">
               <Button className="w-full">
                 <Droplets className="mr-2 h-4 w-4" />
-                Contribute to Pool
+                Join Pool
               </Button>
             </CardFooter>
           </Card>
