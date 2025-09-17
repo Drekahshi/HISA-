@@ -38,7 +38,7 @@ const pools = [
   {
     id: 3,
     name: 'KARURA POOL',
-    description: 'Contribute to the preservation of ancient Redwood forests in California from threats like logging and wildfires.',
+    description: 'Contribute to the preservation of KARURA Forest',
     imageUrl: 'https://picsum.photos/seed/redwood/600/400',
     imageHint: 'redwood forest',
     goal: 100000,
