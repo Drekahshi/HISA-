@@ -17,7 +17,7 @@ import Image from 'next/image';
 const pools = [
   {
     id: 1,
-    name: 'Amazon Rainforest Reforestation',
+    name: 'OOLOLUA FOREST POOL',
     description: 'Help restore vital parts of the Amazon rainforest by funding the plantation of native tree species.',
     imageUrl: 'https://picsum.photos/seed/amazon/600/400',
     imageHint: 'rainforest',
@@ -27,7 +27,7 @@ const pools = [
   },
   {
     id: 2,
-    name: 'Great Barrier Reef Coral Restoration',
+    name: 'KENYA AIRWAYS GREEN POOL',
     description: 'Support the recovery of the Great Barrier Reef through coral planting and ecosystem monitoring.',
     imageUrl: 'https://picsum.photos/seed/reef/600/400',
     imageHint: 'coral reef',
