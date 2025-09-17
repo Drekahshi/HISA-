@@ -13,7 +13,7 @@ const fileToDataURI = async (file: File): Promise<string> => {
 const formSchema = z.object({
   photo: z.instanceof(File).refine((file) => file.size > 0, 'Photo is required.'),
   treeDescription: z.string().min(1, 'Tree description is required.'),
-  sensorData: z.string().optional(),
+  gpsLocation: z.string().min(1, 'GPS location is required.'),
 });
 
 type ValidationState = {
@@ -26,7 +26,7 @@ export async function handleValidation(prevState: ValidationState, formData: For
     const parsed = formSchema.safeParse({
       photo: formData.get('photo'),
       treeDescription: formData.get('treeDescription'),
-      sensorData: formData.get('sensorData'),
+      gpsLocation: formData.get('gpsLocation'),
     });
 
     if (!parsed.success) {
@@ -36,14 +36,14 @@ export async function handleValidation(prevState: ValidationState, formData: For
       };
     }
 
-    const { photo, treeDescription, sensorData } = parsed.data;
+    const { photo, treeDescription, gpsLocation } = parsed.data;
 
     const photoDataUri = await fileToDataURI(photo);
 
     const result = await analyzeTreeHealth({
       photoDataUri,
       treeDescription,
-      sensorData,
+      gpsLocation,
     });
     
     return { data: result, error: null };

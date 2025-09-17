@@ -82,8 +82,8 @@ export default function ValidatePage() {
                 <Textarea id="treeDescription" name="treeDescription" placeholder="e.g., Young acacia tree in a sunny, dry environment. Leaves appear slightly yellow." required />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="sensorData">Sensor Data (Optional)</Label>
-                <Input id="sensorData" name="sensorData" placeholder="e.g., Soil moisture: 45%, Temperature: 28°C" />
+                <Label htmlFor="gpsLocation">GPS location</Label>
+                <Input id="gpsLocation" name="gpsLocation" placeholder="e.g., 1.2921, 36.8219" required />
               </div>
               <SubmitButton />
             </form>

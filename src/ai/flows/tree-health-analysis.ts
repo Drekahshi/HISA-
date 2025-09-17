@@ -17,7 +17,7 @@ const AnalyzeTreeHealthInputSchema = z.object({
     .describe(
       "A photo of the tree, as a data URI that must include a MIME type and use Base64 encoding. Expected format: 'data:<mimetype>;base64,<encoded_data>'."
     ),
-  sensorData: z.string().optional().describe('Sensor data related to the tree, if available.'),
+  gpsLocation: z.string().describe('GPS coordinates of the tree.'),
   treeDescription: z.string().describe('Description of the tree and its environment.'),
 });
 export type AnalyzeTreeHealthInput = z.infer<typeof AnalyzeTreeHealthInputSchema>;
@@ -42,7 +42,7 @@ const prompt = ai.definePrompt({
 
 Description: {{{treeDescription}}}
 Photo: {{media url=photoDataUri}}
-Sensor Data (if available): {{{sensorData}}}
+GPS Location: {{{gpsLocation}}}
 
 Assess the tree's overall health status, identify any issues, determine if it's affected by natural phenomena, and provide recommendations for improvement.
 `,
