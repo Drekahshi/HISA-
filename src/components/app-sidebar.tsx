@@ -80,9 +80,10 @@ export function AppSidebar() {
          <SidebarMenuItem>
               <SidebarMenuButton
                 asChild
+                isActive={pathname === '/about'}
                 tooltip={{ children: "About JANI", side: 'right' }}
               >
-                <Link href="#">
+                <Link href="/about">
                   <Info />
                   <span>About JANI</span>
                 </Link>
