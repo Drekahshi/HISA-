@@ -16,6 +16,8 @@ import {
   Upload,
   CircleDollarSign,
   Info,
+  Database,
+  Droplets,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -34,6 +36,16 @@ const menuItems = [
     href: '/balance',
     label: 'JANI Balance',
     icon: CircleDollarSign,
+  },
+  {
+    href: '/database',
+    label: 'JANI Database',
+    icon: Database,
+  },
+  {
+    href: '/pools',
+    label: 'Conservation Pools',
+    icon: Droplets,
   },
 ];
 

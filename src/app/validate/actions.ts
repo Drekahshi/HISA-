@@ -3,7 +3,9 @@
 import { z } from 'zod';
 import { analyzeTreeHealth } from '@/ai/flows/tree-health-analysis';
 import type { AnalyzeTreeHealthOutput } from '@/ai/flows/tree-health-analysis';
-import { incrementBalance } from '@/lib/db';
+import { incrementBalance, getBalance, setBalance } from '@/lib/db';
+
+const GAS_FEE = 0.3;
 
 const fileToDataURI = async (file: File): Promise<string> => {
     const arrayBuffer = await file.arrayBuffer();
@@ -42,6 +44,17 @@ export async function handleValidation(prevState: ValidationState, formData: For
     }
 
     const { photo, treeDescription, gpsLocation, walletAccount } = parsed.data;
+
+    const currentBalance = getBalance(walletAccount);
+    if (currentBalance < GAS_FEE) {
+        return {
+            data: null,
+            error: `Insufficient balance to pay the 0.3 JANI gas fee. Your current balance is ${currentBalance} JANI.`,
+            success: false,
+        };
+    }
+
+    setBalance(walletAccount, currentBalance - GAS_FEE);
 
     const photoDataUri = await fileToDataURI(photo);
 
