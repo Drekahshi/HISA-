@@ -3,6 +3,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
+  CardDescription,
 } from '@/components/ui/card';
 import {
   Table,
@@ -14,7 +15,7 @@ import {
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { AppHeader } from '@/components/app-header';
-import { Trees, BadgeDollarSign, LineChart, Users } from 'lucide-react';
+import { Trees, BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target } from 'lucide-react';
 import { ConservationChart } from '@/components/conservation-chart';
 
 const recentVerifications = [
@@ -54,6 +55,33 @@ const recentVerifications = [
     timestamp: '2024-05-20 05:00 PM',
   },
 ];
+
+const projections = [
+    {
+        metric: 'Carbon Offset',
+        value: '1,500 tons',
+        timeframe: 'next 12 months',
+        icon: TrendingUp
+    },
+    {
+        metric: 'Tree Survival Rate',
+        value: '95%',
+        timeframe: 'based on current data',
+        icon: CheckCircle,
+    },
+    {
+        metric: 'New Validators',
+        value: '50+',
+        timeframe: 'by end of year',
+        icon: Users,
+    },
+     {
+        metric: 'JANI Minted',
+        value: '25,000',
+        timeframe: 'next 6 months',
+        icon: Target,
+    },
+]
 
 export default function DashboardPage() {
   return (
@@ -104,48 +132,21 @@ export default function DashboardPage() {
         <ConservationChart />
         <Card className="lg:col-span-1 xl:col-span-1">
           <CardHeader>
-            <CardTitle className="font-headline">AI analytics</CardTitle>
+            <CardTitle className="font-headline flex items-center gap-2"><Bot />AI Conservation Projections</CardTitle>
+            <CardDescription>Projected impact based on current growth and data.</CardDescription>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Tree ID</TableHead>
-                  <TableHead>Species</TableHead>
-                  <TableHead>Validator</TableHead>
-                  <TableHead>Status</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {recentVerifications.map((item) => (
-                  <TableRow key={item.treeId}>
-                    <TableCell className="font-medium">{item.treeId}</TableCell>
-                    <TableCell>{item.species}</TableCell>
-                    <TableCell>{item.validator}</TableCell>
-                    <TableCell>
-                      <Badge
-                        variant={
-                          item.status === 'Growing'
-                            ? 'default'
-                            : item.status === 'Needs Attention'
-                            ? 'secondary'
-                            : 'destructive'
-                        }
-                        className={
-                          item.status === 'Growing'
-                            ? 'bg-primary/20 text-primary-dark hover:bg-primary/30 border border-primary/50'
-                            : item.status === 'Needs Attention'
-                            ? 'bg-yellow-500/20 text-yellow-700 hover:bg-yellow-500/30 border border-yellow-500/50'
-                            : 'bg-destructive/20 text-destructive-dark hover:bg-destructive/30 border border-destructive/50'
-                        }
-                      >
-                        {item.status}
-                      </Badge>
-                    </TableCell>
-                  </TableRow>
+            <div className="space-y-6">
+                {projections.map((proj) => (
+                    <div key={proj.metric} className="flex items-start gap-4">
+                        <proj.icon className="h-8 w-8 text-primary mt-1" />
+                        <div>
+                            <p className="font-bold text-lg">{proj.value}</p>
+                            <p className="text-sm text-muted-foreground">{proj.metric} ({proj.timeframe})</p>
+                        </div>
+                    </div>
                 ))}
-              </TableBody>
-            </Table>
+            </div>
           </CardContent>
         </Card>
       </div>
