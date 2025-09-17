@@ -13,7 +13,7 @@ import {
 import { Logo } from '@/components/logo';
 import {
   LayoutDashboard,
-  ScanSearch,
+  Upload,
   CircleDollarSign,
   Info,
 } from 'lucide-react';
@@ -27,8 +27,8 @@ const menuItems = [
   },
   {
     href: '/validate',
-    label: 'Validate Tree',
-    icon: ScanSearch,
+    label: 'Upload',
+    icon: Upload,
   },
   {
     href: '/balance',
