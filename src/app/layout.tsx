@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
-import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
-import { AppSidebar } from '@/components/app-sidebar';
-import { Toaster } from '@/components/ui/toaster';
 import { WalletProvider } from '@/context/wallet-provider';
+import { Toaster } from '@/components/ui/toaster';
+import { AuthLayout } from '@/components/auth-layout';
 
 export const metadata: Metadata = {
   title: 'JANI - Blockchain-Powered Conservation',
@@ -25,14 +24,9 @@ export default function RootLayout({
       </head>
       <body className={cn('font-body antialiased')}>
         <WalletProvider>
-          <SidebarProvider>
-              <AppSidebar />
-              <SidebarInset>
-                <div className="p-4 sm:p-6 lg:p-8">
-                  {children}
-                </div>
-              </SidebarInset>
-          </SidebarProvider>
+            <AuthLayout>
+              {children}
+            </AuthLayout>
         </WalletProvider>
         <Toaster />
       </body>
