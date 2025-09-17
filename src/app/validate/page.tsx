@@ -26,7 +26,7 @@ function SubmitButton() {
   const { pending } = useFormStatus();
   return (
     <Button type="submit" disabled={pending} className="w-full">
-      {pending ? 'Analyzing...' : 'Analyze and Mint Token'}
+      {pending ? 'Analyzing...' : 'SUBMIT'}
     </Button>
   );
 }
