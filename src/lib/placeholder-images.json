@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "tree-1",
+      "description": "A vibrant, healthy green tree with a full canopy under a clear blue sky.",
+      "imageUrl": "https://picsum.photos/seed/tree1/800/600",
+      "imageHint": "healthy tree"
+    },
+    {
+      "id": "tree-2",
+      "description": "A close-up shot of tree leaves showing signs of a potential nutrient deficiency, with some yellowing visible.",
+      "imageUrl": "https://picsum.photos/seed/tree2/800/600",
+      "imageHint": "sick tree"
+    },
+    {
+      "id": "tree-3",
+      "description": "A majestic old tree standing tall in a lush forest, representing longevity and strength.",
+      "imageUrl": "https://picsum.photos/seed/tree3/800/600",
+      "imageHint": "old tree"
+    }
+  ]
 }
