@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, Briefcase, Droplets, Banknote, Lock, Building, BrainCircuit, BarChart, FileText } from 'lucide-react';
+import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, Briefcase, Droplets, Banknote, Lock, Building, BrainCircuit, BarChart, FileText, PlusCircle, Repeat } from 'lucide-react';
 import { ConservationChart } from '@/components/conservation-chart';
 import { Button } from '@/components/ui/button';
 import {
@@ -48,30 +48,6 @@ const projections = [
     },
 ];
 
-const tokenizedAssets = [
-  {
-    id: 'TA001',
-    name: 'Kilimani Land Plot',
-    value: 'KSh 5,000,000',
-    fractions: 1000,
-    status: 'Active',
-  },
-  {
-    id: 'TA002',
-    name: 'SME Green Bond',
-    value: 'KSh 1,200,000',
-    fractions: 500,
-    status: 'Active',
-  },
-  {
-    id: 'TA003',
-    name: 'Community Solar Farm',
-    value: 'KSh 8,500,000',
-    fractions: 2500,
-    status: 'Funding',
-  },
-];
-
 const smes = [
     {
         id: 'SME_001',
@@ -106,6 +82,30 @@ const smes = [
         raised: 450000,
         investors: 112,
     },
+];
+
+const liquidityPools = [
+  {
+    id: 'pool_001',
+    name: 'UMOT / UMOS',
+    tvl: 1250000,
+    volume24h: 78000,
+    apr: 24.5,
+  },
+  {
+    id: 'pool_002',
+    name: 'UMOT / HBAR',
+    tvl: 850000,
+    volume24h: 45000,
+    apr: 18.2,
+  },
+  {
+    id: 'pool_003',
+    name: 'UMOS / USDC',
+    tvl: 2500000,
+    volume24h: 150000,
+    apr: 8.5,
+  },
 ];
 
 export default function UmojaPage() {
@@ -222,71 +222,50 @@ export default function UmojaPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2">
-          <CardHeader>
-            <CardTitle className="font-headline flex items-center gap-2"><Briefcase /> Asset Tokenization (TaaS)</CardTitle>
-            <CardDescription>Manage your tokenized Real World Assets (RWAs).</CardDescription>
+           <CardHeader>
+            <CardTitle className="font-headline flex items-center gap-2"><Droplets /> HISA SAUCE Swap Pools</CardTitle>
+            <CardDescription>Provide liquidity to earn rewards and swap tokens seamlessly.</CardDescription>
           </CardHeader>
           <CardContent>
-            <Table>
+             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Asset ID</TableHead>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Value</TableHead>
-                  <TableHead>Fractions</TableHead>
-                   <TableHead>Status</TableHead>
+                  <TableHead>Pool</TableHead>
+                  <TableHead>TVL</TableHead>
+                  <TableHead>Volume (24h)</TableHead>
+                  <TableHead>APR</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {tokenizedAssets.map((asset) => (
-                  <TableRow key={asset.id}>
-                    <TableCell className="font-mono text-xs">{asset.id}</TableCell>
-                    <TableCell className="font-medium">{asset.name}</TableCell>
-                    <TableCell>{asset.value}</TableCell>
-                    <TableCell>{asset.fractions}</TableCell>
-                     <TableCell>
-                        <Badge variant={asset.status === 'Active' ? 'default' : 'secondary'} className={asset.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}>
-                            {asset.status}
-                        </Badge>
-                     </TableCell>
+                {liquidityPools.map((pool) => (
+                  <TableRow key={pool.id}>
+                    <TableCell className="font-medium">{pool.name}</TableCell>
+                    <TableCell>${pool.tvl.toLocaleString()}</TableCell>
+                    <TableCell>${pool.volume24h.toLocaleString()}</TableCell>
+                    <TableCell className="text-green-600 font-medium">{pool.apr.toFixed(1)}%</TableCell>
+                    <TableCell className="text-right">
+                       <div className="flex justify-end gap-2">
+                         <Button variant="outline" size="sm">
+                           <PlusCircle />
+                           Add
+                         </Button>
+                         <Button variant="outline" size="sm">
+                           <Repeat />
+                           Swap
+                         </Button>
+                       </div>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </CardContent>
            <CardFooter className="border-t pt-6">
-            <Button>Tokenize New Asset</Button>
+            <Button>Create New Pool</Button>
           </CardFooter>
         </Card>
         <Card>
-          <CardHeader>
-            <CardTitle className="font-headline flex items-center gap-2"><Droplets /> Liquidity Pools</CardTitle>
-            <CardDescription>Provide liquidity to earn rewards.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-             <div className='space-y-4 rounded-lg border p-4'>
-                <div className='flex items-center gap-2'>
-                    <Banknote className="h-6 w-6 text-primary" />
-                    <span className="font-bold text-lg font-headline">UMOT / UMOS</span>
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">Liquidity</p>
-                  <p className="text-2xl font-bold font-headline">$1.2M</p>
-                </div>
-                 <div>
-                  <p className="text-sm text-muted-foreground">APR</p>
-                  <p className="text-2xl font-bold font-headline text-green-600">24.5%</p>
-                </div>
-             </div>
-             <Button className="w-full">Go to Swap</Button>
-          </CardContent>
-        </Card>
-      </div>
-
-
-      <div className="grid gap-6 lg:grid-cols-2">
-        <ConservationChart />
-        <Card className="lg:col-span-1 xl:col-span-1">
           <CardHeader>
             <CardTitle className="font-headline flex items-center gap-2"><Bot />AI Financial Projections</CardTitle>
             <CardDescription>Projected growth based on current market data.</CardDescription>
@@ -309,5 +288,3 @@ export default function UmojaPage() {
     </div>
   );
 }
-
-    
