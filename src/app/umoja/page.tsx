@@ -186,7 +186,7 @@ export default function UmojaPage() {
         <Card>
             <CardHeader>
                 <CardTitle className="font-headline flex items-center gap-2"><Building /> Umoja Central Securities Exchange (UCSE)</CardTitle>
-                <CardDescription>Invest in Kenyan SMEs through our AI-driven tokenization platform.</CardDescription>
+                <CardDescription>Invest in Kenyan SMEs through our enterprise-grade tokenization platform, powered by HSUITE.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
                 {smes.slice(0, 2).map((sme) => (
