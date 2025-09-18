@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 export type Ecosystem = 'jani' | 'umoja' | 'culture';
 
@@ -13,19 +13,32 @@ interface EcosystemState {
 export const EcosystemContext = createContext<EcosystemState | undefined>(undefined);
 
 export const EcosystemProvider = ({ children }: { children: ReactNode }) => {
-  const [ecosystem, setEcosystem] = useState<Ecosystem>('jani');
+  const [ecosystem, setEcosystemState] = useState<Ecosystem>('jani');
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     // Automatically switch ecosystem based on the current page
     if (pathname.startsWith('/umoja')) {
-      setEcosystem('umoja');
+      setEcosystemState('umoja');
     } else if (pathname.startsWith('/chat')) {
-      setEcosystem('culture');
+      setEcosystemState('culture');
     } else {
-      setEcosystem('jani');
+      setEcosystemState('jani');
     }
   }, [pathname]);
+  
+  const setEcosystem = (newEcosystem: Ecosystem) => {
+    setEcosystemState(newEcosystem);
+    if (newEcosystem === 'jani') {
+      router.push('/');
+    } else if (newEcosystem === 'umoja') {
+      router.push('/umoja');
+    } else if (newEcosystem === 'culture') {
+      router.push('/chat');
+    }
+  };
+
 
   const value = {
     ecosystem,
