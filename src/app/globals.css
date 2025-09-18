@@ -46,18 +46,18 @@ body {
   }
 
   .theme-umoja {
-    --primary: 38 92% 50%; /* Gold/Orange */
-    --primary-foreground: 38 92% 98%;
-    --secondary: 38 80% 60%;
-    --accent: 38 92% 50%;
-    --ring: 38 92% 50%;
-    --chart-1: 38 92% 50%;
+    --primary: 34 93% 54%; /* Bitcoin Orange */
+    --primary-foreground: 34 93% 98%;
+    --secondary: 34 80% 65%;
+    --accent: 34 93% 54%;
+    --ring: 34 93% 54%;
+    --chart-1: 34 93% 54%;
     --chart-2: 25 70% 31%;
-    --sidebar-background: 38 80% 25%;
-    --sidebar-primary: 38 92% 91%;
-    --sidebar-primary-foreground: 38 92% 34%;
-    --sidebar-accent: 38 92% 50%;
-    --sidebar-ring: 38 92% 91%;
+    --sidebar-background: 34 80% 25%;
+    --sidebar-primary: 34 93% 91%;
+    --sidebar-primary-foreground: 34 93% 34%;
+    --sidebar-accent: 34 93% 54%;
+    --sidebar-ring: 34 93% 91%;
   }
 
   .theme-culture {
@@ -110,16 +110,16 @@ body {
   }
 
   .dark.theme-umoja {
-    --primary: 38 92% 50%;
-    --primary-foreground: 38 92% 98%;
-    --secondary: 38 80% 30%;
-    --accent: 38 92% 50%;
-    --ring: 38 92% 50%;
+    --primary: 34 93% 54%;
+    --primary-foreground: 34 93% 98%;
+    --secondary: 34 80% 30%;
+    --accent: 34 93% 54%;
+    --ring: 34 93% 54%;
 
-    --sidebar-background: 38 80% 12%;
-    --sidebar-primary: 38 92% 50%;
-    --sidebar-accent: 38 80% 25%;
-    --sidebar-ring: 38 92% 50%;
+    --sidebar-background: 34 80% 12%;
+    --sidebar-primary: 34 93% 54%;
+    --sidebar-accent: 34 80% 25%;
+    --sidebar-ring: 34 93% 54%;
   }
   
   .dark.theme-culture {
