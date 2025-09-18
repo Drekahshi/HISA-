@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, Briefcase, Droplets, Banknote, Lock } from 'lucide-react';
+import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, Briefcase, Droplets, Banknote, Lock, Building, BrainCircuit, BarChart, FileText } from 'lucide-react';
 import { ConservationChart } from '@/components/conservation-chart';
 import { Button } from '@/components/ui/button';
 import {
@@ -72,6 +72,42 @@ const tokenizedAssets = [
   },
 ];
 
+const smes = [
+    {
+        id: 'SME_001',
+        name: 'Green-Tech Innovations',
+        sector: 'Renewable Energy',
+        creditScore: 820,
+        marketOpportunity: 8.5,
+        tokenizationReadiness: 95,
+        fundingGoal: 500000,
+        raised: 250000,
+        investors: 42,
+    },
+    {
+        id: 'SME_002',
+        name: 'Agri-Connect Solutions',
+        sector: 'Agriculture',
+        creditScore: 780,
+        marketOpportunity: 9.2,
+        tokenizationReadiness: 88,
+        fundingGoal: 300000,
+        raised: 300000,
+        investors: 89,
+    },
+     {
+        id: 'SME_003',
+        name: 'Afya-Care Diagnostics',
+        sector: 'Healthcare',
+        creditScore: 850,
+        marketOpportunity: 8.8,
+        tokenizationReadiness: 92,
+        fundingGoal: 750000,
+        raised: 450000,
+        investors: 112,
+    },
+];
+
 export default function UmojaPage() {
   return (
     <div className="flex flex-col gap-8">
@@ -128,6 +164,61 @@ export default function UmojaPage() {
           </CardContent>
         </Card>
       </div>
+      
+      <Card>
+        <CardHeader>
+            <CardTitle className="font-headline flex items-center gap-2"><Building /> Umoja Central Securities Exchange (UCSE)</CardTitle>
+            <CardDescription>Invest in the next generation of Kenyan SMEs through a transparent, AI-driven tokenization platform.</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {smes.map((sme) => (
+                    <Card key={sme.id} className="flex flex-col transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                        <CardHeader>
+                            <CardTitle className="font-headline text-lg">{sme.name}</CardTitle>
+                            <CardDescription>{sme.sector}</CardDescription>
+                        </CardHeader>
+                        <CardContent className="flex-grow space-y-4">
+                            <div className="space-y-2">
+                                <div className="flex justify-between items-center text-xs">
+                                    <span className="font-medium text-primary">
+                                       Raised: ${sme.raised.toLocaleString()}
+                                    </span>
+                                    <span className="text-muted-foreground">
+                                        Goal: ${sme.fundingGoal.toLocaleString()}
+                                    </span>
+                                </div>
+                                <Progress value={(sme.raised / sme.fundingGoal) * 100} />
+                                 <p className="text-xs text-muted-foreground">{sme.investors} Investors</p>
+                            </div>
+                            <div className="grid grid-cols-3 gap-2 text-center text-xs">
+                                <div className="p-2 rounded-md bg-muted">
+                                    <p className="font-bold flex items-center justify-center gap-1"><FileText className='h-3 w-3' />{sme.creditScore}</p>
+                                    <p className="text-muted-foreground">Credit Score</p>
+                                </div>
+                                <div className="p-2 rounded-md bg-muted">
+                                     <p className="font-bold flex items-center justify-center gap-1"><BarChart className='h-3 w-3' />{sme.marketOpportunity}/10</p>
+                                    <p className="text-muted-foreground">Market</p>
+                                </div>
+                                 <div className="p-2 rounded-md bg-muted">
+                                     <p className="font-bold flex items-center justify-center gap-1"><BrainCircuit className='h-3 w-3' />{sme.tokenizationReadiness}%</p>
+                                    <p className="text-muted-foreground">Readiness</p>
+                                </div>
+                            </div>
+                        </CardContent>
+                         <CardFooter className="flex gap-2">
+                            <Button variant="outline" className="w-full">View Details</Button>
+                            <Button className="w-full">Invest Now</Button>
+                        </CardFooter>
+                    </Card>
+                ))}
+            </div>
+        </CardContent>
+         <CardFooter className="border-t pt-6 flex justify-between items-center">
+            <p className="text-sm text-muted-foreground">Empowering Kenyan businesses through decentralized capital.</p>
+            <Button>Register Your SME</Button>
+        </CardFooter>
+      </Card>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-2">
@@ -218,3 +309,5 @@ export default function UmojaPage() {
     </div>
   );
 }
+
+    
