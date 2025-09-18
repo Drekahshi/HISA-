@@ -104,7 +104,7 @@ export function AppSidebar() {
                 <SidebarMenuItem>
                     <button onClick={() => setEcosystem('jani')} className={cn('flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-sidebar-ring transition hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2', ecosystem === 'jani' && 'bg-sidebar-accent text-sidebar-accent-foreground font-medium')}>
                         <Leaf />
-                        <span className="capitalize">jani</span>
+                        <span className="capitalize">jani hisa</span>
                     </button>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
