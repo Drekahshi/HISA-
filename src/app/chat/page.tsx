@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, ShieldCheck, Palette, Music, Mic, Library, LandPlot } from 'lucide-react';
+import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, ShieldCheck, Palette, Music, Mic, Library, LandPlot, Upload } from 'lucide-react';
 import { ConservationChart } from '@/components/conservation-chart';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -105,6 +105,12 @@ export default function ChatPage() {
       <AppHeader
         title="Culture Hisa Dashboard"
         description="Preserve and trade cultural heritage on the SentX-powered marketplace."
+        actions={
+          <Button variant="outline">
+            <Upload />
+            Upload Asset
+          </Button>
+        }
       />
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
