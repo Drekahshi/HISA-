@@ -19,6 +19,7 @@ import {
   Database,
   Droplets,
   Coins,
+  Landmark,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -52,6 +53,11 @@ const menuItems = [
     href: '/umoja',
     label: 'Umoja Hisa',
     icon: Coins,
+  },
+  {
+    href: '/chat',
+    label: 'Culture Hisa',
+    icon: Landmark,
   },
 ];
 
