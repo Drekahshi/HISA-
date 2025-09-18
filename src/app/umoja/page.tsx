@@ -21,33 +21,6 @@ import {
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 
-const projections = [
-    {
-        metric: 'Total Value Locked',
-        value: '$42.8M',
-        timeframe: 'next 12 months',
-        icon: TrendingUp
-    },
-    {
-        metric: 'Revenue Growth',
-        value: '15%',
-        timeframe: 'projected this quarter',
-        icon: CheckCircle,
-    },
-    {
-        metric: 'New Users',
-        value: '5,000+',
-        timeframe: 'by end of year',
-        icon: Users,
-    },
-     {
-        metric: 'UMOT Token Value',
-        value: '$5.00',
-        timeframe: 'next 6 months target',
-        icon: Target,
-    },
-];
-
 const smes = [
     {
         id: 'SME_001',
@@ -165,63 +138,8 @@ export default function UmojaPage() {
         </Card>
       </div>
       
-      <Card>
-        <CardHeader>
-            <CardTitle className="font-headline flex items-center gap-2"><Building /> Umoja Central Securities Exchange (UCSE)</CardTitle>
-            <CardDescription>Invest in the next generation of Kenyan SMEs through a transparent, AI-driven tokenization platform.</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {smes.map((sme) => (
-                    <Card key={sme.id} className="flex flex-col transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-                        <CardHeader>
-                            <CardTitle className="font-headline text-lg">{sme.name}</CardTitle>
-                            <CardDescription>{sme.sector}</CardDescription>
-                        </CardHeader>
-                        <CardContent className="flex-grow space-y-4">
-                            <div className="space-y-2">
-                                <div className="flex justify-between items-center text-xs">
-                                    <span className="font-medium text-primary">
-                                       Raised: ${sme.raised.toLocaleString()}
-                                    </span>
-                                    <span className="text-muted-foreground">
-                                        Goal: ${sme.fundingGoal.toLocaleString()}
-                                    </span>
-                                </div>
-                                <Progress value={(sme.raised / sme.fundingGoal) * 100} />
-                                 <p className="text-xs text-muted-foreground">{sme.investors} Investors</p>
-                            </div>
-                            <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                                <div className="p-2 rounded-md bg-muted">
-                                    <p className="font-bold flex items-center justify-center gap-1"><FileText className='h-3 w-3' />{sme.creditScore}</p>
-                                    <p className="text-muted-foreground">Credit Score</p>
-                                </div>
-                                <div className="p-2 rounded-md bg-muted">
-                                     <p className="font-bold flex items-center justify-center gap-1"><BarChart className='h-3 w-3' />{sme.marketOpportunity}/10</p>
-                                    <p className="text-muted-foreground">Market</p>
-                                </div>
-                                 <div className="p-2 rounded-md bg-muted">
-                                     <p className="font-bold flex items-center justify-center gap-1"><BrainCircuit className='h-3 w-3' />{sme.tokenizationReadiness}%</p>
-                                    <p className="text-muted-foreground">Readiness</p>
-                                </div>
-                            </div>
-                        </CardContent>
-                         <CardFooter className="flex gap-2">
-                            <Button variant="outline" className="w-full">View Details</Button>
-                            <Button className="w-full">Invest Now</Button>
-                        </CardFooter>
-                    </Card>
-                ))}
-            </div>
-        </CardContent>
-         <CardFooter className="border-t pt-6 flex justify-between items-center">
-            <p className="text-sm text-muted-foreground">Empowering Kenyan businesses through decentralized capital.</p>
-            <Button>Register Your SME</Button>
-        </CardFooter>
-      </Card>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <Card className="lg:col-span-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card>
            <CardHeader>
             <CardTitle className="font-headline flex items-center gap-2"><Droplets /> HISA SAUCE Swap Pools</CardTitle>
             <CardDescription>Provide liquidity to earn rewards and swap tokens seamlessly.</CardDescription>
@@ -266,23 +184,54 @@ export default function UmojaPage() {
           </CardFooter>
         </Card>
         <Card>
-          <CardHeader>
-            <CardTitle className="font-headline flex items-center gap-2"><Bot />AI Financial Projections</CardTitle>
-            <CardDescription>Projected growth based on current market data.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-6">
-                {projections.map((proj) => (
-                    <div key={proj.metric} className="flex items-start gap-4">
-                        <proj.icon className="h-8 w-8 text-primary mt-1" />
-                        <div>
-                            <p className="font-bold text-lg">{proj.value}</p>
-                            <p className="text-sm text-muted-foreground">{proj.metric} ({proj.timeframe})</p>
-                        </div>
-                    </div>
+            <CardHeader>
+                <CardTitle className="font-headline flex items-center gap-2"><Building /> Umoja Central Securities Exchange (UCSE)</CardTitle>
+                <CardDescription>Invest in Kenyan SMEs through our AI-driven tokenization platform.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                {smes.slice(0, 2).map((sme) => (
+                    <Card key={sme.id} className="flex flex-col transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                        <CardHeader>
+                            <CardTitle className="font-headline text-base">{sme.name}</CardTitle>
+                            <CardDescription className="text-xs">{sme.sector}</CardDescription>
+                        </CardHeader>
+                        <CardContent className="flex-grow space-y-3 text-xs">
+                            <div className="space-y-1">
+                                <div className="flex justify-between items-center">
+                                    <span className="font-medium text-primary">
+                                       Raised: ${sme.raised.toLocaleString()}
+                                    </span>
+                                    <span className="text-muted-foreground">
+                                        Goal: ${sme.fundingGoal.toLocaleString()}
+                                    </span>
+                                </div>
+                                <Progress value={(sme.raised / sme.fundingGoal) * 100} />
+                            </div>
+                            <div className="grid grid-cols-3 gap-2 text-center">
+                                <div className="p-1.5 rounded-md bg-muted">
+                                    <p className="font-bold flex items-center justify-center gap-1"><FileText className='h-3 w-3' />{sme.creditScore}</p>
+                                    <p className="text-muted-foreground text-[10px]">Credit Score</p>
+                                </div>
+                                <div className="p-1.5 rounded-md bg-muted">
+                                     <p className="font-bold flex items-center justify-center gap-1"><BarChart className='h-3 w-3' />{sme.marketOpportunity}/10</p>
+                                    <p className="text-muted-foreground text-[10px]">Market</p>
+                                </div>
+                                 <div className="p-1.5 rounded-md bg-muted">
+                                     <p className="font-bold flex items-center justify-center gap-1"><BrainCircuit className='h-3 w-3' />{sme.tokenizationReadiness}%</p>
+                                    <p className="text-muted-foreground text-[10px]">Readiness</p>
+                                </div>
+                            </div>
+                        </CardContent>
+                         <CardFooter className="flex gap-2 !pt-0">
+                            <Button variant="outline" size="sm" className="w-full">Details</Button>
+                            <Button size="sm" className="w-full">Invest</Button>
+                        </CardFooter>
+                    </Card>
                 ))}
-            </div>
-          </CardContent>
+            </CardContent>
+             <CardFooter className="border-t pt-4">
+                <Button variant="secondary" className="w-full">Register Your SME</Button>
+            </CardFooter>
         </Card>
       </div>
     </div>
