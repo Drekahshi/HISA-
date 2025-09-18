@@ -18,6 +18,7 @@ import {
   Info,
   Database,
   Droplets,
+  Coins,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -46,6 +47,11 @@ const menuItems = [
     href: '/pools',
     label: 'Conservation Pools',
     icon: Droplets,
+  },
+  {
+    href: '/umoja',
+    label: 'Umoja Hisa',
+    icon: Coins,
   },
 ];
 
