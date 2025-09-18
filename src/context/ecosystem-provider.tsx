@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
@@ -29,9 +30,10 @@ export const EcosystemProvider = ({ children }: { children: ReactNode }) => {
   }, [pathname]);
 
   useEffect(() => {
-    // Add a class to the body to control the theme
-    document.body.classList.remove('theme-jani', 'theme-umoja', 'theme-culture');
-    document.body.classList.add(`theme-${ecosystem}`);
+    // Add a class to the html element to control the theme
+    const root = document.documentElement;
+    root.classList.remove('theme-jani', 'theme-umoja', 'theme-culture');
+    root.classList.add(`theme-${ecosystem}`);
   }, [ecosystem]);
   
   const setEcosystem = (newEcosystem: Ecosystem) => {

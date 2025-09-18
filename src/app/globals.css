@@ -44,7 +44,7 @@ body {
     --sidebar-ring: 60 56% 91%;
   }
 
-  .theme-umoja {
+  .theme-umoja:root {
     --primary: 34 93% 54%; /* Bitcoin Orange */
     --primary-foreground: 34 93% 98%;
     --secondary: 34 80% 65%;
@@ -59,7 +59,7 @@ body {
     --sidebar-ring: 34 93% 91%;
   }
 
-  .theme-culture {
+  .theme-culture:root {
     --primary: 262 80% 58%; /* Purple */
     --primary-foreground: 262 80% 98%;
     --secondary: 262 70% 68%;
@@ -108,7 +108,7 @@ body {
     --sidebar-ring: 141 29% 45%;
   }
 
-  .dark.theme-umoja {
+  .dark.theme-umoja:root {
     --primary: 34 93% 54%;
     --primary-foreground: 34 93% 98%;
     --secondary: 34 80% 30%;
@@ -121,7 +121,7 @@ body {
     --sidebar-ring: 34 93% 54%;
   }
   
-  .dark.theme-culture {
+  .dark.theme-culture:root {
     --primary: 262 80% 58%;
     --primary-foreground: 262 80% 98%;
     --secondary: 262 70% 38%;
