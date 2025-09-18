@@ -7,8 +7,7 @@ body {
 }
 
 @layer base {
-  :root,
-  .theme-jani {
+  :root {
     --background: 60 56% 91%;
     --foreground: 25 70% 10%;
     --card: 60 56% 95%;
