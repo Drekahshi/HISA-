@@ -32,27 +32,27 @@ import { cn } from '@/lib/utils';
 const janiMenuItems = [
   {
     href: '/',
-    label: 'Dashboard',
+    label: 'dashboard',
     icon: LayoutDashboard,
   },
   {
     href: '/validate',
-    label: 'Upload',
+    label: 'upload',
     icon: Upload,
   },
   {
     href: '/balance',
-    label: 'JANI Balance',
+    label: 'jani balance',
     icon: CircleDollarSign,
   },
   {
     href: '/database',
-    label: 'JANI Database',
+    label: 'jani database',
     icon: Database,
   },
   {
     href: '/pools',
-    label: 'Conservation Pools',
+    label: 'conservation pools',
     icon: Droplets,
   },
 ];
@@ -60,7 +60,7 @@ const janiMenuItems = [
 const umojaMenuItems = [
   {
     href: '/umoja',
-    label: 'Dashboard',
+    label: 'dashboard',
     icon: LayoutDashboard,
   },
 ];
@@ -68,15 +68,15 @@ const umojaMenuItems = [
 const cultureMenuItems = [
   {
     href: '/chat',
-    label: 'Dashboard',
+    label: 'dashboard',
     icon: LayoutDashboard,
   },
 ];
 
 const aboutLinks = {
-    jani: { href: '/about', label: 'About JANI' },
-    umoja: { href: '/umoja', label: 'About Umoja' },
-    culture: { href: '/chat', label: 'About Culture' },
+    jani: { href: '/about', label: 'about jani' },
+    umoja: { href: '/umoja', label: 'about umoja' },
+    culture: { href: '/chat', label: 'about culture' },
 }
 
 export function AppSidebar() {
@@ -99,24 +99,24 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <div className="p-2 flex flex-col gap-2">
-            <h3 className="px-2 text-xs font-medium text-sidebar-foreground/70">Ecosystems</h3>
+            <h3 className="px-2 text-xs font-medium text-sidebar-foreground/70 uppercase">Ecosystems</h3>
             <SidebarMenu>
                 <SidebarMenuItem>
                     <button onClick={() => setEcosystem('jani')} className={cn('flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-sidebar-ring transition hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2', ecosystem === 'jani' && 'bg-sidebar-accent text-sidebar-accent-foreground font-medium')}>
                         <Leaf />
-                        <span>JANI</span>
+                        <span className="capitalize">jani</span>
                     </button>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
                      <button onClick={() => setEcosystem('umoja')} className={cn('flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-sidebar-ring transition hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2', ecosystem === 'umoja' && 'bg-sidebar-accent text-sidebar-accent-foreground font-medium')}>
                         <Coins />
-                        <span>Umoja Hisa</span>
+                        <span className="capitalize">umoja hisa</span>
                     </button>
                 </SidebarMenuItem>
                 <SidebarMenuItem>
                      <button onClick={() => setEcosystem('culture')} className={cn('flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-sidebar-ring transition hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2', ecosystem === 'culture' && 'bg-sidebar-accent text-sidebar-accent-foreground font-medium')}>
                         <Landmark />
-                        <span>Culture Hisa</span>
+                        <span className="capitalize">culture hisa</span>
                     </button>
                 </SidebarMenuItem>
             </SidebarMenu>
@@ -132,7 +132,7 @@ export function AppSidebar() {
               >
                 <Link href={item.href}>
                   <item.icon />
-                  <span>{item.label}</span>
+                  <span className="capitalize">{item.label}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -149,7 +149,7 @@ export function AppSidebar() {
               >
                 <Link href={aboutLink.href}>
                   <Info />
-                  <span>{aboutLink.label}</span>
+                  <span className="capitalize">{aboutLink.label}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
