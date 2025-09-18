@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, Briefcase, Droplets, Banknote } from 'lucide-react';
+import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, Briefcase, Droplets, Banknote, Lock } from 'lucide-react';
 import { ConservationChart } from '@/components/conservation-chart';
 import { Button } from '@/components/ui/button';
 import {
@@ -19,6 +19,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Progress } from '@/components/ui/progress';
+import { Badge } from '@/components/ui/badge';
 
 const projections = [
     {
@@ -79,17 +80,17 @@ export default function UmojaPage() {
         description="Track financial metrics and ecosystem growth in real-time."
       />
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Active Users
+              Total Value Locked
             </CardTitle>
-            <Users className="h-5 w-5 text-primary" />
+            <Lock className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-headline">28.5K</div>
-            <p className="text-xs text-muted-foreground">+15.7% from last month</p>
+            <div className="text-2xl font-bold font-headline">$42.8M</div>
+            <p className="text-xs text-muted-foreground">+12.4% from last month</p>
           </CardContent>
         </Card>
         <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
@@ -102,6 +103,18 @@ export default function UmojaPage() {
           <CardContent>
             <div className="text-2xl font-bold font-headline">$2.4M</div>
             <p className="text-xs text-muted-foreground">+8.2% from last month</p>
+          </CardContent>
+        </Card>
+         <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">
+              Active Users
+            </CardTitle>
+            <Users className="h-5 w-5 text-primary" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold font-headline">28.5K</div>
+            <p className="text-xs text-muted-foreground">+15.7% from last month</p>
           </CardContent>
         </Card>
         <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
@@ -140,7 +153,11 @@ export default function UmojaPage() {
                     <TableCell className="font-medium">{asset.name}</TableCell>
                     <TableCell>{asset.value}</TableCell>
                     <TableCell>{asset.fractions}</TableCell>
-                     <TableCell>{asset.status}</TableCell>
+                     <TableCell>
+                        <Badge variant={asset.status === 'Active' ? 'default' : 'secondary'} className={asset.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}>
+                            {asset.status}
+                        </Badge>
+                     </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
