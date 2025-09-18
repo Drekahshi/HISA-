@@ -4,10 +4,21 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
+  CardFooter,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target } from 'lucide-react';
+import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, Briefcase, Droplets, Banknote } from 'lucide-react';
 import { ConservationChart } from '@/components/conservation-chart';
+import { Button } from '@/components/ui/button';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import { Progress } from '@/components/ui/progress';
 
 const projections = [
     {
@@ -34,7 +45,31 @@ const projections = [
         timeframe: 'next 6 months target',
         icon: Target,
     },
-]
+];
+
+const tokenizedAssets = [
+  {
+    id: 'TA001',
+    name: 'Kilimani Land Plot',
+    value: 'KSh 5,000,000',
+    fractions: 1000,
+    status: 'Active',
+  },
+  {
+    id: 'TA002',
+    name: 'SME Green Bond',
+    value: 'KSh 1,200,000',
+    fractions: 500,
+    status: 'Active',
+  },
+  {
+    id: 'TA003',
+    name: 'Community Solar Farm',
+    value: 'KSh 8,500,000',
+    fractions: 2500,
+    status: 'Funding',
+  },
+];
 
 export default function UmojaPage() {
   return (
@@ -80,6 +115,66 @@ export default function UmojaPage() {
           </CardContent>
         </Card>
       </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <CardTitle className="font-headline flex items-center gap-2"><Briefcase /> Asset Tokenization (TaaS)</CardTitle>
+            <CardDescription>Manage your tokenized Real World Assets (RWAs).</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Asset ID</TableHead>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Value</TableHead>
+                  <TableHead>Fractions</TableHead>
+                   <TableHead>Status</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {tokenizedAssets.map((asset) => (
+                  <TableRow key={asset.id}>
+                    <TableCell className="font-mono text-xs">{asset.id}</TableCell>
+                    <TableCell className="font-medium">{asset.name}</TableCell>
+                    <TableCell>{asset.value}</TableCell>
+                    <TableCell>{asset.fractions}</TableCell>
+                     <TableCell>{asset.status}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+           <CardFooter className="border-t pt-6">
+            <Button>Tokenize New Asset</Button>
+          </CardFooter>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle className="font-headline flex items-center gap-2"><Droplets /> Liquidity Pools</CardTitle>
+            <CardDescription>Provide liquidity to earn rewards.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+             <div className='space-y-4 rounded-lg border p-4'>
+                <div className='flex items-center gap-2'>
+                    <Banknote className="h-6 w-6 text-primary" />
+                    <span className="font-bold text-lg font-headline">UMOT / UMOS</span>
+                </div>
+                <div>
+                  <p className="text-sm text-muted-foreground">Liquidity</p>
+                  <p className="text-2xl font-bold font-headline">$1.2M</p>
+                </div>
+                 <div>
+                  <p className="text-sm text-muted-foreground">APR</p>
+                  <p className="text-2xl font-bold font-headline text-green-600">24.5%</p>
+                </div>
+             </div>
+             <Button className="w-full">Go to Swap</Button>
+          </CardContent>
+        </Card>
+      </div>
+
 
       <div className="grid gap-6 lg:grid-cols-2">
         <ConservationChart />
