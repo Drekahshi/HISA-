@@ -66,7 +66,7 @@ export default function ValidatePage() {
   return (
     <div className="flex flex-col gap-8">
       <AppHeader
-        title="AI Tree Health Validator"
+        title="SUBMIT TO JANI OR CULTURE"
         description="Submit tree data for an AI-powered health analysis and mint a JANI token."
       />
       <div className="grid gap-8 md:grid-cols-2">
