@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, ShieldCheck, Palette, Music, Mic, Library, LandPlot, Upload, PlusCircle, ShoppingCart } from 'lucide-react';
+import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, ShieldCheck, Palette, Music, Mic, Library, LandPlot, Upload, PlusCircle, ShoppingCart, Wallet } from 'lucide-react';
 import { ConservationChart } from '@/components/conservation-chart';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -147,8 +147,8 @@ export default function ChatPage() {
         </Card>
         <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Trading Volume (24h)</CardTitle>
-            <LineChart className="h-5 w-5 text-primary" />
+            <CardTitle className="text-sm font-medium">Wallet Balance</CardTitle>
+            <Wallet className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold font-headline">21,450 CHAT</div>
