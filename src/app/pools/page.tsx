@@ -1,3 +1,4 @@
+
 'use client';
 
 import { AppHeader } from '@/components/app-header';
@@ -17,7 +18,7 @@ import Image from 'next/image';
 const pools = [
   {
     id: 1,
-    name: 'OOLOLUA FOREST POOL',
+    name: 'OLOOLUA FOREST YOUTH POOL',
     description: 'Help restore vital parts of the Ololua forest by funding the plantation of native tree species.',
     imageUrl: 'https://picsum.photos/seed/amazon/600/400',
     imageHint: 'rainforest',
