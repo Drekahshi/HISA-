@@ -150,7 +150,7 @@ export default function TokenomicsPage() {
                     <CardTitle>JANI & JANI STABLE</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow space-y-2">
-                    <p><strong>Supply:</strong> Not specified in whitepaper</p>
+                    <p><strong>Supply:</strong> 50 million initial supply</p>
                     <p><strong>Focus:</strong> Powering environmental and conservation initiatives.</p>
                 </CardContent>
             </Card>
@@ -159,7 +159,7 @@ export default function TokenomicsPage() {
                     <CardTitle>UMOJA TOKEN, STABLE & OPTION</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow space-y-2">
-                    <p><strong>Supply:</strong> Not specified in whitepaper</p>
+                    <p><strong>Supply:</strong> 50 million initial supply</p>
                     <p><strong>Focus:</strong> Tokenized securities and economic development.</p>
                 </CardContent>
             </Card>
@@ -177,7 +177,7 @@ export default function TokenomicsPage() {
                     <CardTitle>CHAT Token</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow space-y-2">
-                    <p><strong>Supply:</strong> Not specified in whitepaper</p>
+                    <p><strong>Supply:</strong> 50 million initial supply</p>
                     <p><strong>Focus:</strong> Preserving culture and heritage through NFTs.</p>
                 </CardContent>
             </Card>
