@@ -120,6 +120,18 @@ export function AppSidebar() {
                         <span className="capitalize">culture hisa</span>
                     </button>
                 </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={pathname === agentLink.href}
+                    tooltip={{ children: agentLink.label, side: 'right' }}
+                  >
+                    <Link href={agentLink.href}>
+                      <Bot />
+                      <span className="capitalize">{agentLink.label}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
             </SidebarMenu>
         </div>
         <SidebarSeparator />
@@ -141,20 +153,6 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter>
-        <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                asChild
-                isActive={pathname === agentLink.href}
-                tooltip={{ children: agentLink.label, side: 'right' }}
-              >
-                <Link href={agentLink.href}>
-                  <Bot />
-                  <span className="capitalize">{agentLink.label}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-        </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
   );
