@@ -17,7 +17,6 @@ import {
   LayoutDashboard,
   Upload,
   CircleDollarSign,
-  Info,
   Database,
   Droplets,
   Coins,
