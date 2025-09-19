@@ -40,7 +40,7 @@ const pools = [
     id: 3,
     name: 'KARURA POOL',
     description: 'Contribute to the preservation of KARURA Forest',
-    imageUrl: 'https://picsum.photos/seed/kenyan-forest/600/400',
+    imageUrl: 'https://picsum.photos/seed/nature-reserve/600/400',
     imageHint: 'kenyan forest',
     goal: 100000,
     raised: 89000,
