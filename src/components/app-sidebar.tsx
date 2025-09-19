@@ -80,9 +80,9 @@ const cultureMenuItems = [
 ];
 
 const aboutLinks = {
-    jani: { href: '/about', label: 'about jani' },
-    umoja: { href: '/umoja', label: 'about umoja' },
-    culture: { href: '/chat', label: 'about culture' },
+    jani: { href: '/about', label: 'agent jani' },
+    umoja: { href: '/umoja', label: 'agent umoja' },
+    culture: { href: '/chat', label: 'agent culture' },
 }
 
 export function AppSidebar() {
