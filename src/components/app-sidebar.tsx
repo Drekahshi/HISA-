@@ -25,6 +25,7 @@ import {
   Leaf,
   Tractor,
   FileText,
+  Bot,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useEcosystem } from '@/context/ecosystem-provider';
@@ -79,11 +80,9 @@ const cultureMenuItems = [
   },
 ];
 
-const aboutLinks = {
-    jani: { href: '/about', label: 'agent jani' },
-    umoja: { href: '/umoja', label: 'agent umoja' },
-    culture: { href: '/chat', label: 'agent culture' },
-}
+const aboutLink = { href: '/about', label: 'About JANI' };
+const agentLink = { href: '/agent', label: 'AI Agent' };
+
 
 export function AppSidebar() {
   const pathname = usePathname();
@@ -96,8 +95,6 @@ export function AppSidebar() {
       ? cultureMenuItems
       : janiMenuItems;
       
-  const aboutLink = aboutLinks[ecosystem];
-
   return (
     <Sidebar>
       <SidebarHeader>
@@ -156,6 +153,18 @@ export function AppSidebar() {
                 <Link href={aboutLink.href}>
                   <Info />
                   <span className="capitalize">{aboutLink.label}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                asChild
+                isActive={pathname === agentLink.href}
+                tooltip={{ children: agentLink.label, side: 'right' }}
+              >
+                <Link href={agentLink.href}>
+                  <Bot />
+                  <span className="capitalize">{agentLink.label}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
