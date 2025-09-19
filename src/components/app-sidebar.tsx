@@ -1,4 +1,3 @@
-
 // src/components/app-sidebar.tsx
 'use client';
 
@@ -25,6 +24,7 @@ import {
   Landmark,
   Leaf,
   Tractor,
+  FileText,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useEcosystem } from '@/context/ecosystem-provider';
@@ -50,6 +50,11 @@ const janiMenuItems = [
     href: '/pools',
     label: 'conservation pools',
     icon: Droplets,
+  },
+  {
+    href: '/tokenomics',
+    label: 'tokenomics',
+    icon: FileText,
   },
 ];
 
