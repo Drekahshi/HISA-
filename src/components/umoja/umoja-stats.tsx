@@ -10,7 +10,7 @@ import {
   BadgeDollarSign,
   LineChart,
   Users,
-  Lock,
+  Wallet,
 } from 'lucide-react';
 
 export function UmojaStats() {
@@ -19,14 +19,14 @@ export function UmojaStats() {
         <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Total Value Locked
+              Wallet Balance
             </CardTitle>
-            <Lock className="h-5 w-5 text-primary" />
+            <Wallet className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-headline">$42.8M</div>
+            <div className="text-2xl font-bold font-headline">100,000 UMOJA</div>
             <p className="text-xs text-muted-foreground">
-              +12.4% from last month
+              Connected Wallet
             </p>
           </CardContent>
         </Card>
