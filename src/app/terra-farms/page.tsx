@@ -18,7 +18,7 @@ export default function TerraFarmsPage() {
           </CardHeader>
           <CardContent className="prose max-w-none">
             <p>
-              Terra Farm is a decentralized farming agency developed by Bankai Labs within the Hisa Ecosystem, created to tackle the deeply rooted issues of food insecurity, rural poverty, and disconnected food systems. Born from the belief that food is not just a need but a right, Tera Farm bridges smallholder farmers to a digitized economy—one that is fair, transparent, and rooted in community.
+              Terra Farm is a decentralized farming agency developed by Bankai Labs within the Hisa Ecosystem, created to tackle the deeply rooted issues of food insecurity, rural poverty, food supply chain tracking, and disconnected food systems. Born from the belief that food is not just a need but a right, Tera Farm bridges smallholder farmers to a digitized economy—one that is fair, transparent, and rooted in community.
             </p>
             <p>
               We believe that with today's technological advancements, every person should access healthy, natural food. Our goal is to make this accessible, locally grown, and fairly priced food a daily reality. And at the heart of this transformation are the Terraform Units—living nodes in a decentralized network of farms powered by Hedera Hashgraph.
