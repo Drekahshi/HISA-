@@ -32,7 +32,7 @@ const projections = [
     },
      {
         metric: 'Sequestration NFT Minted',
-        value: '50',
+        value: '36',
         timeframe: 'sequestration nft minted 50',
         icon: Target,
     },
