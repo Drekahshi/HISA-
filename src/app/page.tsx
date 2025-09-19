@@ -4,9 +4,10 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
+  CardFooter,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { Users, BadgeDollarSign, LineChart, TrendingUp, CheckCircle, Target, Bot, ShieldCheck, PlusCircle, ShoppingCart, Wallet } from 'lucide-react';
+import { Users, BadgeDollarSign, LineChart, TrendingUp, CheckCircle, Target, Bot, ShieldCheck, PlusCircle, ShoppingCart, Wallet, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -93,7 +94,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card>
+        <Card className='flex flex-col'>
             <CardHeader>
                 <CardTitle className="font-headline flex items-center gap-2">
                 <ShieldCheck /> Verified by Hedera Guardian
@@ -102,7 +103,7 @@ export default function DashboardPage() {
                 Ensuring trust and verifiability for all conservation data.
                 </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4 text-sm text-muted-foreground">
+            <CardContent className="space-y-4 text-sm text-muted-foreground flex-grow">
                 <p>
                 JANI integrates <span className="font-semibold text-foreground">Hedera Guardian</span> to provide an open-source, auditable, and transparent system for all conservation claims. Every tree planted and verified is backed by a verifiable digital measurement, reporting, and verification (dMRV) process.
                 </p>
@@ -112,6 +113,12 @@ export default function DashboardPage() {
                     <li><span className="font-semibold text-foreground">Verifiable Credentials:</span> Each asset receives a digital certificate, making it a tradable and trustworthy ESG asset.</li>
                 </ul>
             </CardContent>
+            <CardFooter>
+                <Button variant="outline">
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    Show Transaction
+                </Button>
+            </CardFooter>
         </Card>
         <Card className="lg:col-span-1 xl:col-span-1">
           <CardHeader>
