@@ -4,7 +4,8 @@ import { SwapPools } from '@/components/umoja/swap-pools';
 import { UcseMarketplace } from '@/components/umoja/ucse-marketplace';
 import Link from 'next/link';
 import { Card, CardTitle, CardDescription } from '@/components/ui/card';
-import { Building, Droplets, Repeat } from 'lucide-react';
+import { Building, Droplets, Repeat, Upload } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function UmojaPage() {
   return (
@@ -12,6 +13,12 @@ export default function UmojaPage() {
       <AppHeader
         title="Umoja Hisa Dashboard"
         description="Track financial metrics and ecosystem growth in real-time."
+        actions={
+          <Button variant="outline">
+            <Upload />
+            TASS FOR SME
+          </Button>
+        }
       />
 
       <UmojaStats />
