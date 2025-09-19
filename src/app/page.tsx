@@ -31,9 +31,9 @@ const projections = [
         icon: Users,
     },
      {
-        metric: 'JANI Minted',
-        value: '25,000',
-        timeframe: 'next 6 months',
+        metric: 'Sequestration NFT Minted',
+        value: '50',
+        timeframe: 'sequestration nft minted 50',
         icon: Target,
     },
 ]
