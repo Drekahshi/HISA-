@@ -32,25 +32,25 @@ export function UmojaStats() {
         </Card>
         <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+            <CardTitle className="text-sm font-medium">Umoja Stable</CardTitle>
             <BadgeDollarSign className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-headline">$2.4M</div>
+            <div className="text-2xl font-bold font-headline">300k</div>
             <p className="text-xs text-muted-foreground">
-              +8.2% from last month
+              UMOS Balance
             </p>
           </CardContent>
         </Card>
         <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Users</CardTitle>
+            <CardTitle className="text-sm font-medium">Umoja Option</CardTitle>
             <Users className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-headline">28.5K</div>
+            <div className="text-2xl font-bold font-headline">10,000,000,000</div>
             <p className="text-xs text-muted-foreground">
-              +15.7% from last month
+              UMOO Balance
             </p>
           </CardContent>
         </Card>
