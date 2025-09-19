@@ -7,22 +7,22 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { Users, BadgeDollarSign, LineChart, TrendingUp, CheckCircle, Target, Bot, ShieldCheck, PlusCircle, ShoppingCart, Wallet, ExternalLink } from 'lucide-react';
+import { Users, BadgeDollarSign, LineChart, TrendingUp, CheckCircle, Target, Bot, ShieldCheck, PlusCircle, ShoppingCart, Wallet, ExternalLink, Leaf } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 const projections = [
     {
-        metric: 'Carbon Offset',
-        value: '1,500 tons',
-        timeframe: 'next 12 months',
-        icon: TrendingUp
+        metric: 'Oloolua Pool (DOVU)',
+        value: '15 tons CO₂e',
+        timeframe: 'projected sequestration',
+        icon: Leaf
     },
     {
-        metric: 'Tree Survival Rate',
-        value: '95%',
-        timeframe: 'based on current data',
-        icon: CheckCircle,
+        metric: 'Karura & Ngong Pools',
+        value: '45 tons CO₂e',
+        timeframe: 'combined target',
+        icon: TrendingUp,
     },
     {
         metric: 'New Validators',
@@ -123,7 +123,7 @@ export default function DashboardPage() {
         <Card className="lg:col-span-1 xl:col-span-1">
           <CardHeader>
             <CardTitle className="font-headline flex items-center gap-2"><Bot />AI Conservation Projections</CardTitle>
-            <CardDescription>Projected impact based on current growth and data.</CardDescription>
+            <CardDescription>Utilizing DOVU methodologies for CO₂ sequestration tracking.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-6">

@@ -56,6 +56,11 @@ const janiMenuItems = [
     label: 'tokenomics',
     icon: FileText,
   },
+  {
+    href: '/terra-farms',
+    label: 'Terra Farms',
+    icon: Tractor,
+  },
 ];
 
 const umojaMenuItems = [
