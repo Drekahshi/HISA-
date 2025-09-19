@@ -87,7 +87,7 @@ export default function DashboardPage() {
             <Wallet className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-headline">25,000 JANI</div>
+            <div className="text-2xl font-bold font-headline">5OO JANI</div>
             <p className="text-xs text-muted-foreground">Connected Wallet</p>
           </CardContent>
         </Card>
