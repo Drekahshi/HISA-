@@ -1,6 +1,7 @@
 import { AppHeader } from '@/components/app-header';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { ShieldCheck, ShoppingCart } from 'lucide-react';
 
 export default function AboutPage() {
   return (
@@ -83,6 +84,50 @@ export default function AboutPage() {
                     <li><strong>Mobile App</strong> — Enables offline/online data collection, biometric verification, geotagging and other validator tools metrics</li>
                     <li><strong>Real-Time Impact Dashboard</strong> — Tracks tree survival rates, biodiversity progress, and carbon sequestration</li>
                 </ul>
+            </section>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="font-headline flex items-center gap-2">
+              <ShieldCheck /> Verification & Trust (Hedera Guardian)
+            </CardTitle>
+            <CardDescription>
+              JANI integrates Hedera Guardian to provide trust, transparency, and verifiability for all conservation assets.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="prose max-w-none space-y-4">
+            <section>
+              <h3 className="text-xl font-semibold">Policy Engine</h3>
+              <p>Guardian's policy engine automates and enforces compliance with international standards (e.g., Gold Standard VER). This ensures every conservation claim follows a verifiable, auditable workflow.</p>
+            </section>
+            <Separator />
+            <section>
+              <h3 className="text-xl font-semibold">Verifiable Credentials & MRV</h3>
+              <p>The system issues tamper-proof digital certificates for every verified activity. Using automated data from IoT, satellites, and on-ground validators, JANI provides a robust Monitoring, Reporting, and Verification (MRV) process, making all data transparent and auditable.</p>
+            </section>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="font-headline flex items-center gap-2">
+              <ShoppingCart /> Carbon Offset Marketplace (DOVU)
+            </CardTitle>
+            <CardDescription>
+              JANI integrates with a DOVU-powered marketplace, turning verified conservation efforts into tradable carbon credits.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="prose max-w-none space-y-4">
+            <section>
+              <h3 className="text-xl font-semibold">Tokenizing Carbon Credits</h3>
+              <p>Each verified conservation asset, backed by Guardian's auditable data, is tokenized. This allows for the creation of high-quality, traceable carbon credits representing real-world environmental impact.</p>
+            </section>
+            <Separator />
+            <section>
+              <h3 className="text-xl font-semibold">Marketplace for ESG Assets</h3>
+              <p>The marketplace allows individuals and corporations to purchase these tokenized carbon credits, providing a direct financial incentive for conservation projects. This creates a sustainable, market-driven funding model for continued environmental regeneration.</p>
             </section>
           </CardContent>
         </Card>
