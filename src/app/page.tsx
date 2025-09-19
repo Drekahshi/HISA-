@@ -6,8 +6,10 @@ import {
   CardDescription,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { Users, BadgeDollarSign, LineChart, TrendingUp, CheckCircle, Target, Bot } from 'lucide-react';
+import { Users, BadgeDollarSign, LineChart, TrendingUp, CheckCircle, Target, Bot, ShieldCheck, PlusCircle, ShoppingCart } from 'lucide-react';
 import { ConservationChart } from '@/components/conservation-chart';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 const projections = [
     {
@@ -102,6 +104,35 @@ export default function DashboardPage() {
             </div>
           </CardContent>
         </Card>
+      </div>
+
+      <div>
+        <h2 className="text-xl font-bold font-headline tracking-tight text-foreground mb-4">
+            Ecosystem Actions
+        </h2>
+        <div className="grid gap-6 md:grid-cols-3">
+            <Link href="/validate">
+              <Card className="group flex flex-col items-center justify-center p-6 text-center h-full transform transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
+                  <ShieldCheck className="w-12 h-12 text-primary mb-4 transition-transform group-hover:scale-110" />
+                  <CardTitle className="font-headline text-lg">Become a Validator</CardTitle>
+                  <CardDescription className="text-sm">Verify conservation efforts and earn JANI tokens.</CardDescription>
+              </Card>
+            </Link>
+             <Link href="/chat">
+              <Card className="group flex flex-col items-center justify-center p-6 text-center h-full transform transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
+                  <PlusCircle className="w-12 h-12 text-primary mb-4 transition-transform group-hover:scale-110" />
+                  <CardTitle className="font-headline text-lg">Mint an NFT</CardTitle>
+                  <CardDescription className="text-sm">Create and register a unique cultural heritage asset.</CardDescription>
+              </Card>
+            </Link>
+            <Link href="/chat">
+              <Card className="group flex flex-col items-center justify-center p-6 text-center h-full transform transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
+                  <ShoppingCart className="w-12 h-12 text-primary mb-4 transition-transform group-hover:scale-110" />
+                  <CardTitle className="font-headline text-lg">Explore Marketplace</CardTitle>
+                  <CardDescription className="text-sm">Trade and collect verified cultural and conservation assets.</CardDescription>
+              </Card>
+            </Link>
+        </div>
       </div>
     </div>
   );
