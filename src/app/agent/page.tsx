@@ -39,7 +39,7 @@ export default function AgentChatPage() {
     }
   }, [state]);
 
-  const agentName = `Agent ${ecosystem.charAt(0).toUpperCase() + ecosystem.slice(1)}`;
+  const agentName = `AGENT HISA`;
 
   return (
     <div className="flex flex-col gap-8 h-[calc(100vh-4rem)]">
