@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -11,7 +12,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Terminal, Bot, Leaf, HeartPulse, ShieldAlert, AlertCircle, CheckCircle } from 'lucide-react';
+import { Terminal, Bot, Leaf, HeartPulse, ShieldAlert, AlertCircle, CheckCircle, Upload } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { useWallet } from '@/hooks/use-wallet';
 import { useToast } from '@/hooks/use-toast';
@@ -120,9 +121,9 @@ export default function ValidatePage() {
         <Card>
           <CardHeader>
             <CardTitle className="font-headline flex items-center gap-2">
-              <Bot /> AI Analysis Result
+              <Upload /> Submit Cultural Data
             </CardTitle>
-             <CardDescription>The AI's assessment of the tree's health will appear here.</CardDescription>
+             <CardDescription>Upload cultural assets for verification and preservation.</CardDescription>
           </CardHeader>
           <CardContent>
             {state.error && (
@@ -136,7 +137,11 @@ export default function ValidatePage() {
             {!state.data && !state.error && (
                <div className="text-center text-muted-foreground py-12">
                   <Leaf className="mx-auto h-12 w-12" />
-                  <p className="mt-4">Results will be displayed once analysis is complete.</p>
+                  <p className="mt-4">Submit your cultural assets here.</p>
+                   <Button variant="outline" className="mt-4">
+                      <Upload className="mr-2 h-4 w-4" />
+                      Upload Cultural Asset
+                   </Button>
               </div>
             )}
             
