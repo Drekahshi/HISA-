@@ -7,10 +7,11 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, ShieldCheck, Palette, Music, Mic, Library, LandPlot, Upload } from 'lucide-react';
+import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, ShieldCheck, Palette, Music, Mic, Library, LandPlot, Upload, PlusCircle, ShoppingCart } from 'lucide-react';
 import { ConservationChart } from '@/components/conservation-chart';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const projections = [
     {
@@ -247,6 +248,35 @@ export default function ChatPage() {
             </div>
           </CardContent>
         </Card>
+      </div>
+
+      <div>
+        <h2 className="text-xl font-bold font-headline tracking-tight text-foreground mb-4">
+            Ecosystem Actions
+        </h2>
+        <div className="grid gap-6 md:grid-cols-3">
+            <Link href="/validate">
+              <Card className="group flex flex-col items-center justify-center p-6 text-center h-full transform transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
+                  <ShieldCheck className="w-12 h-12 text-primary mb-4 transition-transform group-hover:scale-110" />
+                  <CardTitle className="font-headline text-lg">Become a Validator</CardTitle>
+                  <CardDescription className="text-sm">Verify cultural assets and earn CHAT tokens.</CardDescription>
+              </Card>
+            </Link>
+             <Link href="/chat">
+              <Card className="group flex flex-col items-center justify-center p-6 text-center h-full transform transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
+                  <PlusCircle className="w-12 h-12 text-primary mb-4 transition-transform group-hover:scale-110" />
+                  <CardTitle className="font-headline text-lg">Upload an Asset</CardTitle>
+                  <CardDescription className="text-sm">Create and register a unique cultural heritage asset.</CardDescription>
+              </Card>
+            </Link>
+            <Link href="/chat">
+              <Card className="group flex flex-col items-center justify-center p-6 text-center h-full transform transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer">
+                  <ShoppingCart className="w-12 h-12 text-primary mb-4 transition-transform group-hover:scale-110" />
+                  <CardTitle className="font-headline text-lg">Explore Marketplace</CardTitle>
+                  <CardDescription className="text-sm">Trade and collect verified cultural assets.</CardDescription>
+              </Card>
+            </Link>
+        </div>
       </div>
     </div>
   );
