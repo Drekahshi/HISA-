@@ -45,7 +45,7 @@ export default function AgentChatPage() {
     <div className="flex flex-col gap-8 h-[calc(100vh-4rem)]">
       <AppHeader
         title={agentName}
-        description={`Your AI assistant for the ${ecosystem} ecosystem.`}
+        description="Your AI assistance for the HISA ecosystems"
       />
       <Card className="flex-1 flex flex-col">
         <CardHeader>
