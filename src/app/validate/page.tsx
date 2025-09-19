@@ -135,13 +135,18 @@ export default function ValidatePage() {
             )}
 
             {!state.data && !state.error && (
-               <div className="text-center text-muted-foreground py-12">
-                  <Leaf className="mx-auto h-12 w-12" />
-                  <p className="mt-4">Submit your cultural assets here.</p>
-                   <Button variant="outline" className="mt-4">
-                      <Upload className="mr-2 h-4 w-4" />
-                      Upload Cultural Asset
-                   </Button>
+               <div className="text-center text-muted-foreground py-12 flex flex-col items-center justify-center h-full">
+                  <div className="flex-grow flex flex-col items-center justify-center">
+                    <Leaf className="mx-auto h-12 w-12" />
+                    <p className="mt-4">Submit your cultural assets here.</p>
+                     <Button variant="outline" className="mt-4">
+                        <Upload className="mr-2 h-4 w-4" />
+                        Upload Cultural Asset
+                     </Button>
+                  </div>
+                  <Button className="w-full mt-auto">
+                    SUBMIT
+                  </Button>
               </div>
             )}
             
