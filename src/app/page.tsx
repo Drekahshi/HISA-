@@ -25,7 +25,7 @@ const projections = [
         icon: TrendingUp,
     },
     {
-        metric: 'New Validators',
+        metric: 'CFA OFFSET SITES',
         value: '50+',
         timeframe: 'by end of year',
         icon: Users,
