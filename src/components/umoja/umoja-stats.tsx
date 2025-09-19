@@ -24,7 +24,7 @@ export function UmojaStats() {
             <Wallet className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-headline">100,000 UMOJA</div>
+            <div className="text-2xl font-bold font-headline">2,000,000 UMOJA</div>
             <p className="text-xs text-muted-foreground">
               Connected Wallet
             </p>
