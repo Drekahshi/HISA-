@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, ShieldCheck, Palette, Music, Mic, Library, LandPlot, Upload, PlusCircle, ShoppingCart, Wallet } from 'lucide-react';
+import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, ShieldCheck, Palette, Music, Mic, Library, LandPlot, Upload, PlusCircle, ShoppingCart, Wallet, Gift, PartyPopper, CandyCane } from 'lucide-react';
 import { ConservationChart } from '@/components/conservation-chart';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -15,27 +15,27 @@ import Link from 'next/link';
 
 const projections = [
     {
-        metric: 'New Cultural Assets',
-        value: '1,000+',
-        timeframe: 'next 3 months',
-        icon: TrendingUp
+        metric: 'Festive NFTs Minted',
+        value: '10,000+',
+        timeframe: 'this holiday season',
+        icon: Gift
     },
     {
-        metric: 'Contributor Growth',
-        value: '500 new members',
-        timeframe: 'by end of quarter',
-        icon: CheckCircle,
+        metric: 'Community Events',
+        value: '50+ virtual celebrations',
+        timeframe: 'planned for December',
+        icon: PartyPopper,
     },
     {
-        metric: 'Languages Preserved',
-        value: '10 new dialects',
-        timeframe: 'by end of year',
-        icon: Users,
+        metric: 'Holiday-themed Collections',
+        value: '10 new collections',
+        timeframe: 'featuring global traditions',
+        icon: CandyCane,
     },
      {
-        metric: 'CHAT Tokens Earned',
-        value: '1.5M',
-        timeframe: 'next 6 months',
+        metric: 'Creator Payouts',
+        value: '2.5M CHAT',
+        timeframe: 'in seasonal bonuses',
         icon: Target,
     },
 ];
@@ -237,8 +237,8 @@ export default function ChatPage() {
           </Card>
         <Card>
           <CardHeader>
-            <CardTitle className="font-headline flex items-center gap-2"><Bot />AI Cultural Projections</CardTitle>
-            <CardDescription>Projected impact based on current community growth.</CardDescription>
+            <CardTitle className="font-headline flex items-center gap-2"><Bot />SentX Holiday Oracle</CardTitle>
+            <CardDescription>Forecasting festive cultural trends for the upcoming season!</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
