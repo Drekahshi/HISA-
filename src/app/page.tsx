@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { Users, BadgeDollarSign, LineChart, TrendingUp, CheckCircle, Target, Bot, ShieldCheck, PlusCircle, ShoppingCart, Wallet, ExternalLink, Leaf, BarChartHorizontal } from 'lucide-react';
+import { Users, BadgeDollarSign, Landmark, TrendingUp, CheckCircle, Target, Bot, ShieldCheck, PlusCircle, ShoppingCart, Wallet, ExternalLink, Leaf, BarChartHorizontal } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -73,12 +73,12 @@ export default function DashboardPage() {
         </Card>
         <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Growth Rate</CardTitle>
-            <LineChart className="h-5 w-5 text-primary" />
+            <CardTitle className="text-sm font-medium">Jani Stable Bonds</CardTitle>
+            <Landmark className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-headline">+214</div>
-            <p className="text-xs text-muted-foreground">Trees verified this month</p>
+            <div className="text-2xl font-bold font-headline">1 Billion</div>
+            <p className="text-xs text-muted-foreground">Locked Liquidity in all Pools</p>
           </CardContent>
         </Card>
          <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
