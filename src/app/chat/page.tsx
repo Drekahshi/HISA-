@@ -107,10 +107,16 @@ export default function ChatPage() {
         title="Culture Hisa Dashboard"
         description="Preserve and trade cultural heritage on the SentX-powered marketplace."
         actions={
-          <Button variant="outline">
-            <Upload />
-            Upload Asset
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="outline">
+              <Upload />
+              TASS Upload
+            </Button>
+            <Button variant="outline">
+              <Upload />
+              Upload Asset
+            </Button>
+          </div>
         }
       />
 
