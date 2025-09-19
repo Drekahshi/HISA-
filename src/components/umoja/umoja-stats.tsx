@@ -36,7 +36,7 @@ export function UmojaStats() {
             <BadgeDollarSign className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-headline">300k</div>
+            <div className="text-2xl font-bold font-headline">300,000,000</div>
             <p className="text-xs text-muted-foreground">
               UMOS Balance
             </p>
