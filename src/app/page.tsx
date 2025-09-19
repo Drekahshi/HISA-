@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { Users, BadgeDollarSign, LineChart, TrendingUp, CheckCircle, Target, Bot, ShieldCheck, PlusCircle, ShoppingCart, Wallet, ExternalLink, Leaf } from 'lucide-react';
+import { Users, BadgeDollarSign, LineChart, TrendingUp, CheckCircle, Target, Bot, ShieldCheck, PlusCircle, ShoppingCart, Wallet, ExternalLink, Leaf, BarChartHorizontal } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -122,7 +122,7 @@ export default function DashboardPage() {
         </Card>
         <Card className="lg:col-span-1 xl:col-span-1">
           <CardHeader>
-            <CardTitle className="font-headline flex items-center gap-2"><Bot />AI Conservation Projections</CardTitle>
+            <CardTitle className="font-headline flex items-center gap-2"><BarChartHorizontal />Carbon Offset Projections</CardTitle>
             <CardDescription>Utilizing DOVU methodologies for CO₂ sequestration tracking.</CardDescription>
           </CardHeader>
           <CardContent>
