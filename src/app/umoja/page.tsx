@@ -16,7 +16,7 @@ export default function UmojaPage() {
         actions={
           <Button variant="outline">
             <Upload />
-            TASS FOR SME
+            TAAS for HISA
           </Button>
         }
       />
