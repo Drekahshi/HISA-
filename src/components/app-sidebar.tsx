@@ -80,7 +80,6 @@ const cultureMenuItems = [
   },
 ];
 
-const aboutLink = { href: '/about', label: 'About JANI' };
 const agentLink = { href: '/agent', label: 'AI Agent' };
 
 
@@ -144,18 +143,6 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
-         <SidebarMenuItem>
-              <SidebarMenuButton
-                asChild
-                isActive={pathname === aboutLink.href}
-                tooltip={{ children: aboutLink.label, side: 'right' }}
-              >
-                <Link href={aboutLink.href}>
-                  <Info />
-                  <span className="capitalize">{aboutLink.label}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton
                 asChild
