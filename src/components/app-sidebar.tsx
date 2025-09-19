@@ -1,3 +1,4 @@
+
 // src/components/app-sidebar.tsx
 'use client';
 
@@ -42,13 +43,8 @@ const janiMenuItems = [
   },
   {
     href: '/balance',
-    label: 'jani balance',
+    label: 'balance & database',
     icon: CircleDollarSign,
-  },
-  {
-    href: '/database',
-    label: 'jani database',
-    icon: Database,
   },
   {
     href: '/pools',
