@@ -6,7 +6,7 @@ import {
   CardDescription,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { Users, BadgeDollarSign, LineChart, TrendingUp, CheckCircle, Target, Bot, ShieldCheck, PlusCircle, ShoppingCart } from 'lucide-react';
+import { Users, BadgeDollarSign, LineChart, TrendingUp, CheckCircle, Target, Bot, ShieldCheck, PlusCircle, ShoppingCart, Wallet } from 'lucide-react';
 import { ConservationChart } from '@/components/conservation-chart';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -46,7 +46,7 @@ export default function DashboardPage() {
         description="Track conservation efforts and JANI token distribution in real-time."
       />
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
@@ -79,6 +79,16 @@ export default function DashboardPage() {
           <CardContent>
             <div className="text-2xl font-bold font-headline">+214</div>
             <p className="text-xs text-muted-foreground">Trees verified this month</p>
+          </CardContent>
+        </Card>
+         <Card className="transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Wallet Balance</CardTitle>
+            <Wallet className="h-5 w-5 text-primary" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold font-headline">25,000 JANI</div>
+            <p className="text-xs text-muted-foreground">Connected Wallet</p>
           </CardContent>
         </Card>
       </div>
