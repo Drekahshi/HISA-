@@ -53,7 +53,7 @@ export default function AgentChatPage() {
             <Bot /> AI Conversation
           </CardTitle>
           <CardDescription>
-            Ask me anything about the {ecosystem} ecosystem, including token balances.
+            Your trusted copilot here for you . Ask me anything .
           </CardDescription>
         </CardHeader>
         <CardContent className="flex-1 overflow-hidden">
