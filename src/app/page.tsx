@@ -77,7 +77,7 @@ export default function DashboardPage() {
             <Landmark className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-headline">1 Billion</div>
+            <div className="text-2xl font-bold font-headline">1 Billion JANI STABLE</div>
             <p className="text-xs text-muted-foreground">Locked Liquidity in all Pools</p>
           </CardContent>
         </Card>
