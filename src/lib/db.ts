@@ -10,8 +10,8 @@ const db: MockDatabase = {
 };
 
 export const getBalance = (accountId: string): number => {
-  // If a balance exists for the account, return it. Otherwise, default to 420.
-  return db.balances[accountId] ?? 420;
+  // If a balance exists for the account, return it. Otherwise, default to 500.
+  return db.balances[accountId] ?? 500;
 };
 
 export const incrementBalance = (accountId: string): number => {
