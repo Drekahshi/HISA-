@@ -79,7 +79,7 @@ const cultureMenuItems = [
   },
 ];
 
-const agentLink = { href: '/agent', label: 'AI Agent' };
+const agentLink = { href: '/agent', label: 'HISA' };
 
 
 export function AppSidebar() {

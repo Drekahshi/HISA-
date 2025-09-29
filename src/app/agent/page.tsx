@@ -39,7 +39,7 @@ export default function AgentChatPage() {
     }
   }, [state]);
 
-  const agentName = `AGENT HISA`;
+  const agentName = `HISA`;
 
   return (
     <div className="flex flex-col gap-8 h-[calc(100vh-4rem)]">
