@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { AppHeader } from '@/components/app-header';
-import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, ShieldCheck, Palette, Music, Mic, Library, LandPlot, Upload, PlusCircle, ShoppingCart, Wallet, Gift, PartyPopper, CandyCane } from 'lucide-react';
+import { BadgeDollarSign, LineChart, Users, TrendingUp, Bot, CheckCircle, Target, ShieldCheck, Palette, Music, Mic, Library, LandPlot, Upload, PlusCircle, ShoppingCart, Wallet, Gift, PartyPopper, CandyCane, ArrowUpCircle, ArrowDownCircle } from 'lucide-react';
 import { ConservationChart } from '@/components/conservation-chart';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -109,12 +109,12 @@ export default function ChatPage() {
         actions={
           <div className="flex gap-2">
             <Button variant="outline">
-              <Upload />
-              TASS Upload
+              <ArrowUpCircle />
+              Send
             </Button>
             <Button variant="outline">
-              <Upload />
-              Upload Asset
+              <ArrowDownCircle />
+              Receive
             </Button>
           </div>
         }
