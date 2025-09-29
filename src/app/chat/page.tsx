@@ -129,7 +129,7 @@ export default function ChatPage() {
             <Users className="h-5 w-5 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold font-headline">3.2K</div>
+            <div className="text-2xl font-bold font-headline">369</div>
             <p className="text-xs text-muted-foreground">+89 joined this week</p>
           </CardContent>
         </Card>
