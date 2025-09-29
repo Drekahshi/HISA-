@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { AlertCircle, CircleDollarSign } from 'lucide-react';
+import { AlertCircle, CircleDollarSign, ArrowUpCircle, ArrowDownCircle } from 'lucide-react';
 import { useWallet } from '@/hooks/use-wallet';
 import { useEffect, useState } from 'react';
 import { getHbarBalance } from './hbar-actions';
@@ -114,7 +114,18 @@ export default function BalancePage() {
     <div className="flex flex-col gap-8">
       <AppHeader
         title="Balance & Database"
-        description="Check token balances and browse conservation data."
+        actions={
+          <div className="flex gap-2">
+            <Button variant="outline">
+              <ArrowUpCircle />
+              Send
+            </Button>
+            <Button variant="outline">
+              <ArrowDownCircle />
+              Receive
+            </Button>
+          </div>
+        }
       />
       
       <div className="grid gap-8 md:grid-cols-2">
