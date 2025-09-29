@@ -42,7 +42,7 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-8">
       <AppHeader
-        title="Impact Dashboard"
+        title="Jani Dashboard"
         description="Track conservation efforts and JANI token distribution in real-time."
       />
 
