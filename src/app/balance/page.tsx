@@ -12,7 +12,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertCircle, CircleDollarSign, ArrowUpCircle, ArrowDownCircle } from 'lucide-react';
 import { useWallet } from '@/hooks/use-wallet';
 import { useEffect, useState } from 'react';
-import { getHbarBalance } from './hbar-actions';
+import { getAllBalances, AllBalances, TokenBalance } from './hbar-actions';
 import {
   Table,
   TableBody,
@@ -85,7 +85,7 @@ function SubmitButton() {
 export default function BalancePage() {
   const { account, walletType } = useWallet();
   const [state, formAction] = useFormState(handleBalanceInquiry, initialState);
-  const [hbarBalance, setHbarBalance] = useState<string | null>(null);
+  const [hbarBalances, setHbarBalances] = useState<AllBalances | null>(null);
   const [hbarError, setHbarError] = useState<string | null>(null);
   const [isHbarLoading, setIsHbarLoading] = useState<boolean>(false);
 
@@ -95,8 +95,8 @@ export default function BalancePage() {
         setIsHbarLoading(true);
         setHbarError(null);
         try {
-          const balance = await getHbarBalance(account);
-          setHbarBalance(balance);
+          const balances = await getAllBalances(account);
+          setHbarBalances(balances);
         } catch (error) {
           setHbarError(error instanceof Error ? error.message : 'An unknown error occurred.');
         } finally {
@@ -105,7 +105,7 @@ export default function BalancePage() {
       };
       fetchHbarBalance();
     } else {
-        setHbarBalance(null);
+        setHbarBalances(null);
         setHbarError(null);
     }
   }, [account, walletType]);
@@ -175,11 +175,34 @@ export default function BalancePage() {
                 {walletType === 'hashpack' && (
                     <div className="border-t pt-4 flex flex-col items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-12 h-12 text-primary mb-2"><path d="M12 22V12h10V2zM4 12H2v10h10v-2z"></path></svg>
-                         <CardTitle className="font-headline text-2xl mb-1">HBAR Balance</CardTitle>
-                        {isHbarLoading && <p className="text-muted-foreground text-sm">Loading HBAR balance...</p>}
+                         <CardTitle className="font-headline text-2xl mb-1">Hedera Balances</CardTitle>
+                        {isHbarLoading && <p className="text-muted-foreground text-sm">Loading balances...</p>}
                         {hbarError && <p className="text-red-500 text-sm">{hbarError}</p>}
-                        {hbarBalance !== null && (
-                             <p className="text-3xl font-bold text-primary">{hbarBalance}</p>
+                        {hbarBalances && (
+                             <div>
+                                <p className="text-3xl font-bold text-primary">{hbarBalances.hbar} HBAR</p>
+                                {hbarBalances.tokens && hbarBalances.tokens.length > 0 && (
+                                  <div className="mt-4">
+                                    <h4 className="font-semibold mb-2">Token Balances</h4>
+                                    <Table>
+                                      <TableHeader>
+                                        <TableRow>
+                                          <TableHead>Token ID</TableHead>
+                                          <TableHead className='text-right'>Balance</TableHead>
+                                        </TableRow>
+                                      </TableHeader>
+                                      <TableBody>
+                                        {hbarBalances.tokens.map(token => (
+                                          <TableRow key={token.tokenId}>
+                                            <TableCell className="font-mono text-xs">{token.tokenId}</TableCell>
+                                            <TableCell className='text-right font-medium'>{token.balance.toLocaleString()}</TableCell>
+                                          </TableRow>
+                                        ))}
+                                      </TableBody>
+                                    </Table>
+                                  </div>
+                                )}
+                             </div>
                         )}
                    </div>
                 )}
