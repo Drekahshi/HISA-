@@ -12,13 +12,11 @@ import { ai } from '@/ai/genkit';
 import { z } from 'zod';
 import * as admin from 'firebase-admin';
 import { Client, PrivateKey, TopicMessageSubmitTransaction } from '@hashgraph/sdk';
-import { firebaseConfig } from '@/firebase/config';
 
 // Initialize Firebase Admin SDK if not already initialized
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.applicationDefault(),
-    databaseURL: `https://${firebaseConfig.projectId}.firebaseio.com`
   });
 }
 const db = admin.firestore();
@@ -171,8 +169,4 @@ export const registerTree = ai.defineFlow(
       return {
         success: false,
         treeId: '',
-        message: error.message || 'An internal error occurred during tree registration.'
-      }
-    }
-  }
-);
+        message: error.message || 'An internal error
