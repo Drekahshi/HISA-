@@ -1,0 +1,133 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user in the Veridi system, storing core profile information and roles.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address.",
+          "format": "email"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "User's phone number."
+        },
+        "role": {
+          "type": "string",
+          "description": "User's role in the system (e.g., admin, validator, cfa_member, donor)."
+        },
+        "cfaId": {
+          "type": "string",
+          "description": "Reference to CFA entity. (Relationship: CFA 1:N User)"
+        },
+        "validatorTier": {
+          "type": "number",
+          "description": "Tier level of the validator (e.g., 1=Tree Planter, 2=Community, 3=AI)."
+        },
+        "reputationScore": {
+          "type": "number",
+          "description": "User's reputation score based on their contributions."
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "role"
+      ]
+    },
+    "CFA": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "CFA",
+      "type": "object",
+      "description": "Represents a Conservation Finance Aggregator (CFA).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the CFA."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the CFA."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the CFA and its activities."
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profile information. Includes denormalized 'cfaId' for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/cfas/{cfaId}",
+        "definition": {
+          "entityName": "CFA",
+          "schema": {
+            "$ref": "#/backend/entities/CFA"
+          },
+          "description": "Stores Conservation Finance Aggregator (CFA) information.",
+          "params": [
+            {
+              "name": "cfaId",
+              "description": "The unique identifier for the CFA."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/treePlantingRecords/{recordId}",
+        "definition": {
+          "entityName": "treePlantingRecord",
+          "schema": {
+            "$ref": "#/backend/entities/treePlantingRecord"
+          },
+          "description": "Stores tree planting records submitted by validators for a specific user. The user id helps identify who has submitted the records.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user (validator)."
+            },
+            {
+              "name": "recordId",
+              "description": "The unique identifier for the tree planting record."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "This Firestore structure is designed to support Veridi's conservation and environmental regeneration efforts, prioritizing security, scalability, and debuggability using the core design principles of Authorization Independence, Clarity of Intent, DBAC (Database-Based Access Control), QAPs (Rules are not Filters) and Invariants.\n\n**Authorization Independence:** The structure achieves authorization independence primarily through denormalization. The `CFA` entity data is included into user profiles via the `cfaId` field.  This eliminates the need for security rules to perform `get()` operations on parent documents to determine access, enabling atomic operations (transactions/batches) and simplifying debugging.\n\n**Structural Segregation:**  The structure uses structural segregation by separating `users` and `cfas` into distinct collections, each with its own security posture. This simplifies security rules because all documents within each collection share the same access control requirements. User generated content such as tree planting records are stored under the users collection.\n\n**Access Modeling:**\n*   **Path-Based Ownership:** Uses `/users/{userId}` to establish clear ownership of user data.\n*   **Membership Map:** While not explicitly using a membership map in the root collections, the concept applies to how users are associated with CFAs via the `cfaId` field in the `User` entity.\n*   **Global Roles (DBAC):** The roles are implicitly managed via the `User` entity's `role` field. While the data structure doesn't include role-based collections (e.g., `/roles_admin/{uid}`), the design supports adding such collections if more granular role management is needed in the future.\n\n**QAPs (Rules are not Filters):** The chosen structure supports secure `list` operations. Because authorization information (`role`, `cfaId`) is directly available within the user document, security rules can efficiently filter list operations based on these attributes without resorting to complex filtering logic within the rules themselves.\n\n**Invariants:**  The structure supports invariants such as ownership. The `userId` parameter in paths like `/users/{userId}` directly establishes ownership. Timestamps can be added at the application level and enforced via security rules to prevent modification.\n"
+  }
+}

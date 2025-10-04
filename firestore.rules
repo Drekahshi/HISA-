@@ -1,0 +1,123 @@
+/**
+ * @file Firestore Security Rules for Veridi
+ * @version Prototyping
+ * @description This ruleset enforces a user-ownership model for user profiles and a more open model for CFAs, allowing public read access with owner-only writes. Tree planting records are restricted to the user only.
+ *
+ * Data Structure:
+ * - /users/{userId}: Stores user profile information. Each user can only read/write their own profile.
+ * - /cfas/{cfaId}: Stores CFA information. Publicly readable, but only owners can create, update, or delete.
+ * - /users/{userId}/treePlantingRecords/{recordId}: Stores tree planting records for the specific user. Only the user can read/write their own records.
+ *
+ * Key Security Decisions:
+ * - Users can only manage their own profiles and tree planting records.
+ * - CFA information is publicly readable but only modifiable by an owner (based on an `ownerId` field that MUST be added to the CFA schema).
+ * - Listing of documents is generally allowed within user-owned subcollections.
+ * - No data shape validation is performed beyond ownership checks during writes (to enable rapid prototyping).
+ *
+ * Denormalization for Authorization:
+ * - The `User` entity's `cfaId` field denormalizes CFA information onto user profiles, avoiding the need for `get()` calls in security rules.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Manages access control for user profiles.
+     * @path /users/{userId}
+     * @allow (create) - User creates their own profile if request.auth.uid == userId.
+     * @allow (get, update, delete) - User accesses their own profile if request.auth.uid == userId.
+     * @deny (create) - User attempts to create a profile for another user.
+     * @deny (get, update, delete) - User attempts to access another user's profile.
+     * @principle Enforces document ownership for all operations.
+     */
+    match /users/{userId} {
+      // isSignedIn() checks if the user is authenticated.
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      // isOwner(userId) checks if the request is made by the owner of the document.
+      function isOwner(userId) {
+        return request.auth.uid == userId;
+      }
+
+      // isExistingOwner(userId) checks if the request is made by the owner of the existing document.
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      // Create: Only the user themselves can create their profile.
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+
+      // Get: Only the user themselves can read their profile.
+      allow get: if isOwner(userId);
+
+      // List: Only the user themselves can list their profile.
+      allow list: if isOwner(userId);
+
+      // Update: Only the user themselves can update their profile, and the `id` field is immutable.
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+
+      // Delete: Only the user themselves can delete their profile.
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Manages access control for Conservation Finance Aggregators (CFAs).
+     * @path /cfas/{cfaId}
+     * @allow (get, list) - Anyone can read CFA information.
+     * @allow (create, update, delete) - Only the owner of the CFA can modify it (requires 'ownerId' field on CFA documents).
+     * @deny (create, update, delete) - Non-owners cannot modify CFA information.
+     * @principle Allows public read access with owner-only writes.
+     */
+    match /cfas/{cfaId} {
+      // Anyone can read CFA information.
+      allow get, list: if true;
+
+      // Only the owner of the CFA can create, update, or delete it.
+      // CRITICAL: The CFA entity is missing an 'ownerId' or 'authorId' field.
+      allow create: if request.auth.uid == request.resource.data.ownerId;
+      allow update: if request.auth.uid == resource.data.ownerId;
+      allow delete: if request.auth.uid == resource.data.ownerId;
+    }
+
+     /**
+      * @description Manages access control for tree planting records for a specific user.
+      * @path /users/{userId}/treePlantingRecords/{recordId}
+      * @allow (create, get, list, update, delete) - Only the user can manage their own tree planting records.
+      * @deny (create, get, list, update, delete) - Users cannot manage tree planting records for other users.
+      * @principle Enforces document ownership for all operations on tree planting records.
+      */
+    match /users/{userId}/treePlantingRecords/{recordId} {
+      // isSignedIn() checks if the user is authenticated.
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      // isOwner(userId) checks if the request is made by the owner of the document.
+      function isOwner(userId) {
+        return request.auth.uid == userId;
+      }
+
+      // isExistingOwner(userId) checks if the request is made by the owner of the existing document.
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      // Create: Only the user themselves can create their tree planting records.
+      allow create: if isOwner(userId);
+
+      // Get: Only the user themselves can read their tree planting records.
+      allow get: if isOwner(userId);
+
+      // List: Only the user themselves can list their tree planting records.
+      allow list: if isOwner(userId);
+
+      // Update: Only the user themselves can update their tree planting records.
+      allow update: if isExistingOwner(userId);
+
+      // Delete: Only the user themselves can delete their tree planting records.
+      allow delete: if isExistingOwner(userId);
+    }
+  }
+}
