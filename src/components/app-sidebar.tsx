@@ -26,6 +26,7 @@ import {
   FileText,
   Bot,
   Trees,
+  Sprout,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useEcosystem } from '@/context/ecosystem-provider';
@@ -36,6 +37,11 @@ const janiMenuItems = [
     href: '/',
     label: 'dashboard',
     icon: LayoutDashboard,
+  },
+  {
+    href: '/plant',
+    label: 'Plant Tree',
+    icon: Sprout,
   },
   {
     href: '/validate',
