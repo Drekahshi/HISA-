@@ -58,7 +58,7 @@ export function UcseMarketplace() {
         {smes.map((sme) => (
           <Card
             key={sme.id}
-            className="flex flex-col transform transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full"
+            className="flex flex-col transform transition-transform duration-300 hover:scale-105 hover:shadow-xl"
           >
             <CardHeader>
               <CardTitle className="font-headline text-base">

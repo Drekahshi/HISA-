@@ -67,8 +67,8 @@ export function SwapPools() {
           <TableHeader>
             <TableRow>
               <TableHead>Pool</TableHead>
-              <TableHead>TVL</TableHead>
-              <TableHead>Volume (24h)</TableHead>
+              <TableHead className="hidden sm:table-cell">TVL</TableHead>
+              <TableHead className="hidden md:table-cell">Volume (24h)</TableHead>
               <TableHead>APR</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
@@ -77,8 +77,8 @@ export function SwapPools() {
             {liquidityPools.map((pool) => (
               <TableRow key={pool.id}>
                 <TableCell className="font-medium">{pool.name}</TableCell>
-                <TableCell>${pool.tvl.toLocaleString()}</TableCell>
-                <TableCell>${pool.volume24h.toLocaleString()}</TableCell>
+                <TableCell className="hidden sm:table-cell">${pool.tvl.toLocaleString()}</TableCell>
+                <TableCell className="hidden md:table-cell">${pool.volume24h.toLocaleString()}</TableCell>
                 <TableCell className="text-green-600 font-medium">
                   {pool.apr.toFixed(1)}%
                 </TableCell>
@@ -86,11 +86,11 @@ export function SwapPools() {
                   <div className="flex justify-end gap-2">
                     <Button variant="outline" size="sm">
                       <PlusCircle />
-                      Add
+                      <span className="hidden sm:inline-block">Add</span>
                     </Button>
                     <Button variant="outline" size="sm">
                       <Repeat />
-                      Swap
+                       <span className="hidden sm:inline-block">Swap</span>
                     </Button>
                   </div>
                 </TableCell>
