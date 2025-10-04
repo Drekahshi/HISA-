@@ -5,6 +5,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
+  CardDescription
 } from '@/components/ui/card';
 import {
   ChartContainer,
@@ -15,29 +16,38 @@ import {
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 const chartData = [
-  { month: 'January', trees: 186 },
-  { month: 'February', trees: 305 },
-  { month: 'March', trees: 237 },
-  { month: 'April', trees: 273 },
-  { month: 'May', trees: 209 },
-  { month: 'June', trees: 214 },
+  { month: 'Jan', indigenous: 186, exotic: 80, medicinal: 40 },
+  { month: 'Feb', indigenous: 305, exotic: 200, medicinal: 60 },
+  { month: 'Mar', indigenous: 237, exotic: 120, medicinal: 90 },
+  { month: 'Apr', indigenous: 273, exotic: 190, medicinal: 110 },
+  { month: 'May', indigenous: 209, exotic: 130, medicinal: 70 },
+  { month: 'Jun', indigenous: 214, exotic: 140, medicinal: 50 },
 ];
 
 const chartConfig = {
-  trees: {
-    label: 'Trees Planted',
-    color: 'hsl(var(--primary))',
+  indigenous: {
+    label: 'Indigenous',
+    color: 'hsl(var(--chart-1))',
   },
+  exotic: {
+    label: 'Exotic',
+    color: 'hsl(var(--chart-2))',
+  },
+  medicinal: {
+    label: 'Medicinal',
+    color: 'hsl(var(--chart-3))'
+  }
 } satisfies ChartConfig;
 
 export function ConservationChart() {
   return (
-    <Card className="lg:col-span-1 xl:col-span-1">
+    <Card className="h-full">
       <CardHeader>
-        <CardTitle className="font-headline">Conservation Growth</CardTitle>
+        <CardTitle className="font-headline">Monthly Planting Report</CardTitle>
+        <CardDescription>Trees planted by type over the last 6 months.</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="h-[250px] w-full">
+        <ChartContainer config={chartConfig} className="h-[300px] w-full">
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
@@ -52,7 +62,9 @@ export function ConservationChart() {
               cursor={false}
               content={<ChartTooltipContent indicator="dot" />}
             />
-            <Bar dataKey="trees" fill="var(--color-trees)" radius={4} />
+            <Bar dataKey="indigenous" stackId="a" fill="var(--color-indigenous)" radius={[0, 0, 4, 4]} />
+            <Bar dataKey="exotic" stackId="a" fill="var(--color-exotic)" radius={[0, 0, 4, 4]} />
+            <Bar dataKey="medicinal" stackId="a" fill="var(--color-medicinal)" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ChartContainer>
       </CardContent>
