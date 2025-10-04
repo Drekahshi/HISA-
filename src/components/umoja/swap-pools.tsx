@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -41,6 +42,13 @@ const liquidityPools = [
     volume24h: 150000,
     apr: 8.5,
   },
+    {
+    id: 'pool_004',
+    name: 'JANI / UMOS',
+    tvl: 550000,
+    volume24h: 22000,
+    apr: 32.1,
+  },
 ];
 
 export function SwapPools() {
@@ -51,7 +59,7 @@ export function SwapPools() {
           <Droplets /> HISA SAUCE Swap Pools
         </CardTitle>
         <CardDescription>
-          Provide liquidity to earn rewards and swap tokens seamlessly.
+          Provide liquidity to earn rewards and swap tokens seamlessly across the Hisa ecosystem.
         </CardDescription>
       </CardHeader>
       <CardContent>

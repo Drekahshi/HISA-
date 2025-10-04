@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -40,36 +41,24 @@ const smes = [
     raised: 300000,
     investors: 89,
   },
-  {
-    id: 'SME_003',
-    name: 'Afya-Care Diagnostics',
-    sector: 'Healthcare',
-    creditScore: 850,
-    marketOpportunity: 8.8,
-    tokenizationReadiness: 92,
-    fundingGoal: 750000,
-    raised: 450000,
-    investors: 112,
-  },
 ];
 
 export function UcseMarketplace() {
   return (
-    <Card>
+    <Card className="flex flex-col h-full">
       <CardHeader>
         <CardTitle className="font-headline flex items-center gap-2">
-          <Building /> Umoja Central Securities Exchange (UCSE)
+          <Building /> UCSE Marketplace
         </CardTitle>
         <CardDescription>
-          Invest in Kenyan SMEs through our enterprise-grade tokenization
-          platform, powered by HSUITE.
+          Invest in tokenized Kenyan SMEs on the HSUITE-powered exchange.
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4">
-        {smes.slice(0, 2).map((sme) => (
+      <CardContent className="space-y-4 flex-grow">
+        {smes.map((sme) => (
           <Card
             key={sme.id}
-            className="flex flex-col transform transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+            className="flex flex-col transform transition-transform duration-300 hover:scale-105 hover:shadow-xl h-full"
           >
             <CardHeader>
               <CardTitle className="font-headline text-base">
@@ -128,7 +117,7 @@ export function UcseMarketplace() {
       </CardContent>
       <CardFooter className="border-t pt-4">
         <Button variant="secondary" className="w-full">
-          Register Your SME
+          Browse All SMEs
         </Button>
       </CardFooter>
     </Card>

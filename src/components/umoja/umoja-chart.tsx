@@ -1,3 +1,4 @@
+
 'use client';
 
 import {
@@ -33,7 +34,7 @@ const chartConfig = {
 
 export function UmojaChart() {
   return (
-    <Card>
+    <Card className="h-full">
       <CardHeader>
         <CardTitle className="font-headline">Ecosystem TVL Growth</CardTitle>
         <CardDescription>
@@ -41,7 +42,7 @@ export function UmojaChart() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="h-[250px] w-full">
+        <ChartContainer config={chartConfig} className="h-[300px] w-full">
           <AreaChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
@@ -77,6 +78,7 @@ export function UmojaChart() {
                 type="natural"
                 fill="url(#fillTvl)"
                 stroke="var(--color-tvl)"
+                strokeWidth={2}
             />
           </AreaChart>
         </ChartContainer>

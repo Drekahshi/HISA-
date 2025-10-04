@@ -1,7 +1,9 @@
+
 import { AppHeader } from '@/components/app-header';
 import { UmojaStats } from '@/components/umoja/umoja-stats';
 import { SwapPools } from '@/components/umoja/swap-pools';
 import { UcseMarketplace } from '@/components/umoja/ucse-marketplace';
+import { UmojaChart } from '@/components/umoja/umoja-chart';
 import Link from 'next/link';
 import { Card, CardTitle, CardDescription } from '@/components/ui/card';
 import { Building, Droplets, Repeat, ArrowUpCircle, ArrowDownCircle } from 'lucide-react';
@@ -29,10 +31,16 @@ export default function UmojaPage() {
 
       <UmojaStats />
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <SwapPools />
-        <UcseMarketplace />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+            <UmojaChart />
+        </div>
+        <div className="lg:col-span-1">
+            <UcseMarketplace />
+        </div>
       </div>
+
+      <SwapPools />
 
        <div>
         <h2 className="text-xl font-bold font-headline tracking-tight text-foreground mb-4">
