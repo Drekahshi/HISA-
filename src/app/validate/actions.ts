@@ -1,8 +1,10 @@
+
 'use server';
 
 import { z } from 'zod';
 import { analyzeTreeHealth } from '@/ai/flows/tree-health-analysis';
 import type { AnalyzeTreeHealthOutput } from '@/ai/flows/tree-health-analysis';
+import { submitValidation } from '@/ai/flows/submit-validation';
 import { incrementBalance, getBalance, setBalance } from '@/lib/db';
 
 const GAS_FEE = 0.3;
@@ -13,7 +15,7 @@ const fileToDataURI = async (file: File): Promise<string> => {
     return `data:${file.type};base64,${buffer.toString('base64')}`;
 };
 
-const formSchema = z.object({
+const validationFormSchema = z.object({
   photo: z.instanceof(File).refine((file) => file.size > 0, 'Photo is required.'),
   treeDescription: z.string().min(1, 'Tree description is required.'),
   gpsLocation: z.string().min(1, 'GPS location is required.'),
@@ -28,7 +30,7 @@ type ValidationState = {
 
 export async function handleValidation(prevState: ValidationState, formData: FormData): Promise<ValidationState> {
   try {
-    const parsed = formSchema.safeParse({
+    const parsed = validationFormSchema.safeParse({
       photo: formData.get('photo'),
       treeDescription: formData.get('treeDescription'),
       gpsLocation: formData.get('gpsLocation'),
@@ -73,4 +75,66 @@ export async function handleValidation(prevState: ValidationState, formData: For
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
     return { data: null, error: `Failed to analyze tree health: ${errorMessage}`, success: false };
   }
+}
+
+const verificationFormSchema = z.object({
+    treeId: z.string().min(1, 'Tree ID is required.'),
+    photos: z.array(z.instanceof(File)).min(1, 'At least one photo is required.'),
+    height: z.coerce.number().positive('Height must be positive.'),
+    diameter: z.coerce.number().positive('Diameter must be positive.'),
+    healthScore: z.coerce.number().min(1).max(10),
+    notes: z.string().optional(),
+});
+
+type VerificationState = {
+    error: string | null;
+    success: boolean;
+};
+
+export async function handleVerificationSubmit(prevState: VerificationState, formData: FormData): Promise<VerificationState> {
+    try {
+        const photoFiles = formData.getAll('photos').filter(p => p instanceof File && p.size > 0) as File[];
+
+        const parsed = verificationFormSchema.safeParse({
+            treeId: formData.get('treeId'),
+            photos: photoFiles,
+            height: formData.get('height'),
+            diameter: formData.get('diameter'),
+            healthScore: formData.get('healthScore'),
+            notes: formData.get('notes'),
+        });
+
+        if (!parsed.success) {
+            return {
+                error: parsed.error.errors.map((e) => e.message).join(', '),
+                success: false,
+            };
+        }
+
+        const { treeId, photos, height, diameter, healthScore, notes } = parsed.data;
+        
+        const photoDataUris = await Promise.all(photos.map(fileToDataURI));
+
+        const result = await submitValidation({
+            treeId,
+            photos: photoDataUris,
+            measurements: {
+                height,
+                diameter,
+                healthScore,
+            },
+            notes: notes || '',
+        });
+        
+        if (!result.success) {
+            return { error: result.message || 'Validation submission failed.', success: false };
+        }
+        
+        return { error: null, success: true };
+
+    } catch (error) {
+        console.error('Verification submission error:', error);
+        const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
+        return { error: `Failed to submit verification: ${errorMessage}`, success: false };
+    }
 }
