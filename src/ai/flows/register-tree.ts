@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -169,4 +170,8 @@ export const registerTree = ai.defineFlow(
       return {
         success: false,
         treeId: '',
-        message: error.message || 'An internal error
+        message: error.message || 'An internal error occurred.'
+      };
+    }
+  }
+);
