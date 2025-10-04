@@ -25,6 +25,7 @@ import {
   Tractor,
   FileText,
   Bot,
+  Trees,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useEcosystem } from '@/context/ecosystem-provider';
@@ -40,6 +41,11 @@ const janiMenuItems = [
     href: '/validate',
     label: 'upload',
     icon: Upload,
+  },
+   {
+    href: '/registry',
+    label: 'Tree Registry',
+    icon: Trees,
   },
   {
     href: '/balance',
