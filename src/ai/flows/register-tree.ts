@@ -14,24 +14,15 @@ import { z } from 'zod';
 import * as admin from 'firebase-admin';
 import { Client, PrivateKey, TopicMessageSubmitTransaction } from '@hashgraph/sdk';
 
-// Initialize Firebase Admin SDK if not already initialized
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
-  });
+// Helper to ensure Firebase Admin is initialized only once.
+function ensureFirebaseAdminInitialized() {
+  if (!admin.apps.length) {
+    admin.initializeApp({
+      credential: admin.credential.applicationDefault(),
+    });
+  }
+  return admin.firestore();
 }
-const db = admin.firestore();
-
-// Initialize Hedera client
-let hederaClient: Client;
-if (process.env.HEDERA_ACCOUNT_ID && process.env.HEDERA_PRIVATE_KEY) {
-    hederaClient = Client.forTestnet();
-    hederaClient.setOperator(
-      process.env.HEDERA_ACCOUNT_ID,
-      PrivateKey.fromString(process.env.HEDERA_PRIVATE_KEY)
-    );
-}
-
 
 const RegisterTreeInputSchema = z.object({
   species: z.object({
@@ -57,7 +48,7 @@ const RegisterTreeOutputSchema = z.object({
 });
 export type RegisterTreeOutput = z.infer<typeof RegisterTreeOutputSchema>;
 
-async function createNotification({ type, cfaId, treeId, message }: { type: string, cfaId: string, treeId: string, message: string }) {
+async function createNotification({ db, type, cfaId, treeId, message }: { db: admin.firestore.Firestore, type: string, cfaId: string, treeId: string, message: string }) {
   // Get all validators in the CFA
   const validatorsSnapshot = await db.collection('users')
     .where('role', '==', 'validator')
@@ -93,9 +84,17 @@ export const registerTree = ai.defineFlow(
     outputSchema: RegisterTreeOutputSchema,
   },
   async (input) => {
+    const db = ensureFirebaseAdminInitialized();
     const { species, location, cfaId, nurserySource, userId } = input;
     
-    if (!hederaClient) {
+    let hederaClient: Client;
+    if (process.env.HEDERA_ACCOUNT_ID && process.env.HEDERA_PRIVATE_KEY) {
+        hederaClient = Client.forTestnet();
+        hederaClient.setOperator(
+          process.env.HEDERA_ACCOUNT_ID,
+          PrivateKey.fromString(process.env.HEDERA_PRIVATE_KEY)
+        );
+    } else {
       throw new Error("Hedera client is not initialized. Please check environment variables.");
     }
     
@@ -152,6 +151,7 @@ export const registerTree = ai.defineFlow(
 
       // Create notification for validators
       await createNotification({
+        db,
         type: 'validation_required',
         cfaId,
         treeId: treeRef.id,
