@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { WalletProvider } from '@/context/wallet-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { AuthLayout } from '@/components/auth-layout';
+import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
   title: 'JANI - Blockchain-Powered Conservation',
@@ -25,11 +26,13 @@ export default function RootLayout({
          <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className={cn('font-body antialiased')}>
-        <WalletProvider>
-            <AuthLayout>
-              {children}
-            </AuthLayout>
-        </WalletProvider>
+        <FirebaseClientProvider>
+          <WalletProvider>
+              <AuthLayout>
+                {children}
+              </AuthLayout>
+          </WalletProvider>
+        </FirebaseClientProvider>
         <Toaster />
       </body>
     </html>

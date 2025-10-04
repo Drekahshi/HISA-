@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "User": {
@@ -69,9 +70,21 @@
   },
   "auth": {
     "providers": [
-      "password",
+      "email/password",
+      "phone",
       "anonymous"
-    ]
+    ],
+    "customClaims": {
+      "role": [
+        "admin",
+        "validator",
+        "cfa_member",
+        "donor"
+      ],
+      "cfaId": "string",
+      "validatorTier": "number",
+      "reputationScore": "number"
+    }
   },
   "firestore": {
     "structure": [
